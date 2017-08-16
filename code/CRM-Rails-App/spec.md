@@ -8,7 +8,6 @@ Through this app, users will be able to convert their leads into customers which
 
 Ultimately, the goal of this is to see which user has had the highest earnings.
 
-This is a TEST!!!
 Specs:
 - [x] Using Ruby on Rails for the project
 - [ ] Include at least one has_many relationship- User has_many companies
