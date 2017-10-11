@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 #   "https://github.com/#{repo_name}.git"
 # end
 
+gem 'jquery-rails'
+
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
