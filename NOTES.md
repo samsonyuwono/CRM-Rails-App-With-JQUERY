@@ -12,3 +12,8 @@
 - create button
 - make function and event listener for drop down button
 - Get drop down of all of company's leads to show
+
+
+Stretch
+
+Decide where to add comments after all other requirements are achieved
