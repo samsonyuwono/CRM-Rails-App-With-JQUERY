@@ -1,0 +1,17 @@
+<%= render 'layouts/form_messages', object: @lead %>
+<%= form_for [@company, @lead] do |f| %>
+
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+
+  <%= f.label :email %>:
+  <%= f.text_field :email %><br />
+
+  <%= f.label :phone_number %>:
+  <%= f.text_field :phone_number %><br />
+
+  Check this box for contact:<%= f.check_box :contact %><br />
+
+  <%= f.submit %>
+
+  <% end %>

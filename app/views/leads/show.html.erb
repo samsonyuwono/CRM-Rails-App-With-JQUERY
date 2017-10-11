@@ -1,0 +1,9 @@
+<h4><%= @lead.name %></h4>
+
+  <b>Phone number: </b><%=@lead.phone_number %>
+  <b>Email: </b><%=@lead.email %>
+  <b>Contact: </b><%= @lead.contact %>
+  <br/>
+
+
+<%= link_to 'Delete Lead', company_lead_path(@lead), method: :delete %>

@@ -1,0 +1,12 @@
+<% if @companies != [] %>
+<h2>Your accounts and in-progress accounts</h2>
+<ul>
+  <% @companies.each do |c| %>
+<h3> <b><%= link_to c.name, company_path(c) %></b> </h3>
+  <%end%>
+</ul>
+  <% else %>
+  <h3>You have not added any companies yet.</h3>
+<%end %>
+
+<%= link_to "Add Company", new_company_path %> <br>
