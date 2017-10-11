@@ -1,23 +1,20 @@
 # Specifications for the Rails Assessment
 CRM-Rails-App
 Summary
-My Rails project will be based on a CRM app where a sales team can keep track of their leads through the accounts they're managing.
+A user will be able to click on their companies which will then reveal all of the company's leads/contacts. Included in this drop down is a button to add notes/comments. The comments/notes will then appended to each company
 
-A user will first log on or sign up for an account.
+If the user opts to click into a lead, the user will be able to click a next button to go through each individual lead in detail.
 
-From their home screen portal they keep track of the companies they are selling to. Each company has a lot of leads which a user can add or assign to.
-
-Through this app, users will be able to convert their leads into customers which will then contribute to their customer total.
 
 
 # Specifications for the Rails with jQuery Assessment
 
 Specs:
 - [x] Use jQuery for implementing new requirements
-- [ ] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
-- [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
-- [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
-- [ ] Use your Rails API and a form to create a resource and render the response without a page refresh.
+- [ ] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.- If the user opts to click into a lead, the user will be able to click a next button to go through each individual lead in detail
+- [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.- A user will be able to click on their companies which will then reveal all of the company's leads/contacts.
+- [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM. - Index resource requirement will achieve this requirement
+- [ ] Use your Rails API and a form to create a resource and render the response without a page refresh. -  Included in this drop down is a button to add notes/comments. The comments/notes will then appended to each company
 - [ ] Translate JSON responses into js model objects.
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
 
