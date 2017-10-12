@@ -8,11 +8,10 @@
 
 
 
-10/11- 10/12 EOD
-- make function and event listener for drop down button for each company that will show all of a company's leads
-- Get drop down of all of company's leads to show
-
+10/12 EOD
+- add comment section for lead show page
 
 Stretch
 
 Decide where to add comments after all other requirements are achieved
+- Make each lead in drop-down menu clickable

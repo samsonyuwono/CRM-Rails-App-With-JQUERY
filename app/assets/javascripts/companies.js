@@ -4,10 +4,18 @@ function moreInfo(element){
     var leads= data["leads"]
     var infoList = ""
     for (var i = 0; i < leads.length; i++){
-      infoList += "<li>" + leads[i]["name"] + leads[i]["phone_number"] + "</li>"
+      infoList += "<li>" + "Name:" + " " + leads[i]["name"] + "</li>"
+      // "Email:" + " " + leads[i]["email"] + " " +
+      // "Phone Number:" + " " + leads[i]["phone_number"] + " " +
+      // "Contact?" + leads[i]["contact"] + "</li>"
     }
     console.log(infoList)
     $("#company-" +id).html(infoList)
   })
-  // $("#more-" + id + "-company").replaceWith(`<button id="hide-${id}-company" class="js-hide" data-id="${id}" onclick="moreInfo(this)">Hide Info</button>`)
+  $("#more-" + id + "-company").replaceWith(`<button id="hide-${id}-company" class="js-hide" data-id="${id}" onClick= hideInfo(this)> Hide Info</button>`)
+}
+
+function hideInfo(element){
+  var id = element.dataset.id
+  console.log(id)
 }
