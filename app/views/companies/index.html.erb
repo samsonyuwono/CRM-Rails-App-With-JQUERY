@@ -2,8 +2,10 @@
 <h2>Your accounts and in-progress accounts</h2>
 <ul>
   <% @companies.each do |c| %>
-<h3> <b><%= link_to c.name, company_path(c) %></b> </h3>
-<button type="button name= button">Show leads/contacts</button>
+  
+    <h3> <b><%= link_to c.name, company_path(c)%></b> </h3>
+      <button id="company" class="js-more">Show Leads/Contacts</button>
+
   <%end%>
 </ul>
   <% else %>
