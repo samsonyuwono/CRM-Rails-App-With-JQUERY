@@ -4,8 +4,10 @@
   <% @companies.each do |company| %>
 
     <b><%= link_to company.name, company_path(company)%></b>
-    <button id="company" class="js-more" data-id="<%= company.id %>" onclick="moreInfo(this)">Show Leads/Contacts</button> </br>
+    <button id="more-<%=company.id%>-company" class="js-more" data-id="<%= company.id %>" onclick="moreInfo(this)">Show Leads/Contacts</button> </br>
+    <ul id="company-<%=company.id%>">
 
+    </ul>
   <%end%>
 </ul>
   <% else %>

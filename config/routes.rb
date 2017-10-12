@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :leads
+  
 
   root 'static#home', as: 'home'
   get 'customers', to: 'static#customers'
