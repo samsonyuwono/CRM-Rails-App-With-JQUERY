@@ -18,4 +18,6 @@ function moreInfo(element){
 function hideInfo(element){
   var id = element.dataset.id
   console.log(id)
+  $("#company-"+id).html("")
+  $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company" class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
 }
