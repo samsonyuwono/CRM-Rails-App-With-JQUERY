@@ -3,7 +3,11 @@ before_action :authenticate_user!
 before_action :current_company, only: %i[show edit update destroy]
 
  def index
-   @companies = current_user.companies
+  @companies = current_user.companies
+    respond_to do |f|
+      f.html {render :index}
+      f.json{render json: @companies}
+    end
  end
 
  def new
@@ -20,6 +24,11 @@ before_action :current_company, only: %i[show edit update destroy]
  end
 
  def show
+  #  @company = Company.find(params[:id])
+  #  respond_to do |f|
+  #    f.html {render :show}
+  #    f.json{render json: @company}
+  #  end
  end
 
  def edit

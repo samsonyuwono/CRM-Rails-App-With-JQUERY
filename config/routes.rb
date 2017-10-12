@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   root 'static#home', as: 'home'
   get 'customers', to: 'static#customers'
   get 'dashboard', to: 'static#dashboard'
+
+    get 'companies/:id/company_data', to: 'companies#company_data'
 end

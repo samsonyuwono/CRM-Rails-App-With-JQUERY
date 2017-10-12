@@ -9,8 +9,7 @@
 
 
 10/11- 10/12 EOD
-- create button
-- make function and event listener for drop down button
+- make function and event listener for drop down button for each company that will show all of a company's leads
 - Get drop down of all of company's leads to show
 
 
