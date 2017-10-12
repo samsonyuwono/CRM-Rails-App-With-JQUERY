@@ -1,10 +1,10 @@
 <% if @companies != [] %>
 <h2>Your accounts and in-progress accounts</h2>
 <ul>
-  <% @companies.each do |c| %>
+  <% @companies.each do |company| %>
 
-    <h3> <b><%= link_to c.name, company_path(c)%></b> </h3>
-      <button id="company" class="js-more">Show Leads/Contacts</button>
+    <b><%= link_to company.name, company_path(company)%></b>
+    <button id="company" class="js-more" data-id="<%= company.id %>" onclick="moreInfo(this)">Show Leads/Contacts</button> </br>
 
   <%end%>
 </ul>

@@ -24,11 +24,11 @@ before_action :current_company, only: %i[show edit update destroy]
  end
 
  def show
-  #  @company = Company.find(params[:id])
-  #  respond_to do |f|
-  #    f.html {render :show}
-  #    f.json{render json: @company}
-  #  end
+   @company = Company.find(params[:id])
+   respond_to do |f|
+     f.html {render :show}
+     f.json{render json: @company}
+   end
  end
 
  def edit

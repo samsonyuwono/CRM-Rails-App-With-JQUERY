@@ -1,8 +1,6 @@
-$(document).ready(function(){
-  $(function(){
-    $('.js-more').on('click', function(){
-      console.log(this)
-      //attach leads list to each button
-    })
+function moreInfo(element){
+  var id = element.dataset.id
+  $.get('/companies/' + id + '.json', function(data){
+    console.log(data)
   })
-})
+}
