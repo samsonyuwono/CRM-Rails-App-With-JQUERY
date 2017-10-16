@@ -20,25 +20,26 @@ function hideInfo(element){
   $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company" class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
 }
 
-// $(document).ready(function(){
-//   $(function(){
+$(document).ready(function(){
+    $('.js-next').on('click', function(){
+      console.log(this)
+    })
+  })
+
+
+// function nextCompany(){
 //     $('.js-next').on('click', function(){
-//       console.log('clicked!')
+//       console.log(this)
 //     })
-//   })
-// })
-//
-function nextCompany(){
-  var nextId = parseInt($(".js-next").attr("data-id")) + 1
-  updateView(nextId)
-}
+//   }
+
 
 // function previousCompany(){
 //
 // }
 //
-function updateView(id){
-  $.get('/companies/' + id, function(data){
-    console.log(data)
-  })
-}
+// function updateView(showId){
+//   $.get('/companies/' + id + '.json', function(data){
+//     console.log(data)
+//   })
+// }
