@@ -2,6 +2,10 @@
 <b>Revenue(in thousands):</b> <%= @company.revenue %></p>
 <b>Customer:</b> <%= @company.customer %></p>
 
+<button type="button" name="button"><--- Previous Account</button>
+<button class="js-next" data-id="<%= @company.id %>">Next Account ---></button>
+
+
 <ul>
 
   <h4><%= @company.name%>'s Leads/Contacts</h4>

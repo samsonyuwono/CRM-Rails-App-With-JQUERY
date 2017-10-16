@@ -8,7 +8,8 @@
 
 
 
-10/12 EOD
+10/16 EOD
+- add next and back for company show page
 - add comment section for lead show page
 
 Stretch

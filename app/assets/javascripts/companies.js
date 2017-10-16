@@ -9,7 +9,6 @@ function moreInfo(element){
       // "Phone Number:" + " " + leads[i]["phone_number"] + " " +
       // "Contact?" + leads[i]["contact"] + "</li>"
     }
-    console.log(infoList)
     $("#company-" +id).html(infoList)
   })
   $("#more-" + id + "-company").replaceWith(`<button id="hide-${id}-company" class="js-hide" data-id="${id}" onClick= hideInfo(this)> Hide Info</button>`)
@@ -17,7 +16,29 @@ function moreInfo(element){
 
 function hideInfo(element){
   var id = element.dataset.id
-  console.log(id)
   $("#company-"+id).html("")
   $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company" class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
+}
+
+// $(document).ready(function(){
+//   $(function(){
+//     $('.js-next').on('click', function(){
+//       console.log('clicked!')
+//     })
+//   })
+// })
+//
+function nextCompany(){
+  var nextId = parseInt($(".js-next").attr("data-id")) + 1
+  updateView(nextId)
+}
+
+// function previousCompany(){
+//
+// }
+//
+function updateView(id){
+  $.get('/companies/' + id, function(data){
+    console.log(data)
+  })
 }
