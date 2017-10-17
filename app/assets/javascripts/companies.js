@@ -4,10 +4,12 @@ function moreInfo(element){
     var leads= data["leads"]
     var infoList = ""
     for (var i = 0; i < leads.length; i++){
-      infoList += "<li>" + "Name:" + " " + leads[i]["name"] + "</li>"
-      // "Email:" + " " + leads[i]["email"] + " " +
-      // "Phone Number:" + " " + leads[i]["phone_number"] + " " +
-      // "Contact?" + leads[i]["contact"] + "</li>"
+      infoList += "<li>" + "<b>" + "Name:" + "</b>" + " " + leads[i]["name"] + " " + "|" +
+      "<b>" + " Phone Number:" + "</b>" + " " + leads[i]["phone_number"] + " " + "|" +
+      "<b>" + " Email:" + "</b>" + " " + leads[i]["email"] + " " + "|" +
+      "<b>" + " Contact?" + "</b>" + leads[i]["contact"] + "</li>"
+
+
     }
     $("#company-" +id).html(infoList)
   })
@@ -20,26 +22,21 @@ function hideInfo(element){
   $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company" class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
 }
 
-$(document).ready(function(){
-    $('.js-next').on('click', function(){
-      console.log(this)
-    })
+function nextCompany(){
+  var nextId = parseInt($(".js-next").attr("data-id")) + 1
+  console.log(nextId)
+  updateView(nextId)
+  }
+
+function updateView(showId){
+  $.get('/companies/' + showId + '.json', function(data){
+    console.log(data)
+      //
+      // fetch(`https://localhost:3000/companies/${showId}`)
+      //   .then(function(res){
+      //     console.log(res)
+      // return res.json()
+      //   })
+      //fetch then render page
   })
-
-
-// function nextCompany(){
-//     $('.js-next').on('click', function(){
-//       console.log(this)
-//     })
-//   }
-
-
-// function previousCompany(){
-//
-// }
-//
-// function updateView(showId){
-//   $.get('/companies/' + id + '.json', function(data){
-//     console.log(data)
-//   })
-// }
+}

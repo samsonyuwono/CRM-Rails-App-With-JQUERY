@@ -12,6 +12,23 @@
 - add next and back for company show page
 - add comment section for lead show page
 
+Build Comments for each Company show page
+- Create form
+- Create new controller and actions for comments
+- Create new comments model
+- Create new comments serializer
+
+<!-- <h3>Comments</h3>
+<%= form_for @comment do |f| %>
+  <label>Add a comment:</label>
+  <%= f.text_field :text %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <span id= "company-field">
+    <%= f.hidden_field :country_id, value: @company.id %>
+  </span>
+  <%= f.submit "Submit", id: "submit" %>
+<% end %> -->
+
 Stretch
 
 Decide where to add comments after all other requirements are achieved
