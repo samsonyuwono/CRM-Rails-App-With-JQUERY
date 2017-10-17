@@ -3,9 +3,8 @@
 //   updateView(nextId)
 // }
 //
-// function updateView(element){
-//   var showId = element.data.id
-//   $.get("/companies/" + id + "/leads/" + "showId", function(data){
+// function updateView(showId){
+//   $.get("/companies" + "/leads/" + "showId", function(data){
 //     console.log("clicked!")
 //   })
 // }

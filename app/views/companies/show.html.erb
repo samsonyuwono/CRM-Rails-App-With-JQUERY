@@ -16,6 +16,12 @@
   <%end %>
 
 </ul>
+<div class="add-lead">
 <%= link_to "Add a lead/contact", new_company_lead_path(@company) %> </br>
+</div>
+<div class="edit-link">
 <%= link_to "Edit Company", edit_company_path(@company)%> </br>
+</div>
+<div class="delete-link">
 <%= link_to 'Delete Company', company_path(@company), method: :delete %>
+</div>

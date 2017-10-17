@@ -31,18 +31,14 @@ function nextCompany(){
 function updateView(showId){
   $.get('/companies/' + showId + '.json', function(data){
     console.log(data["customer"])
-    var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + data["revenue"]
-    var customerStatus = "<b>" + "Customer:" + "</b>" + data["customer"]
+    var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + data["revenue"]
+    var customerStatus = "<b>" + "Customer:" + "</b>" + " "+ data["customer"]
     $("h3").text(data["name"])
-    $("p.revenue").text(revenueNumber)
-    $("p.customer").text(customerStatus)
-
-      //
-      // fetch(`https://localhost:3000/companies/${showId}`)
-      //   .then(function(res){
-      //     console.log(res)
-      // return res.json()
-      //   })
-      //fetch then render page
+    $("p.revenue").html(revenueNumber)
+    $("p.customer").html(customerStatus)
+    $(".js-next").attr("data-id", data["id"])
+    $(".add-lead").html(`<a href="/companies/${data["id"]}/leads/new">Add a lead/contact</a>`)
+    $(".edit-link").html(`<a href="/companies/${data["id"]}/edit">Edit Company</a>`)
+    $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)//has to render delete action
   })
 }
