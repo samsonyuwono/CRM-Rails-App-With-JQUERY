@@ -1,6 +1,6 @@
 <h3><%=@company.name%></h3>
-<b>Revenue(in thousands):</b> <%= @company.revenue %></p>
-<b>Customer:</b> <%= @company.customer %></p>
+<b><p class= "revenue">Revenue(in thousands):</b> <%= @company.revenue %></p>
+<b><p class="customer">Customer:</b> <%= @company.customer %></p>
 
 <!-- <button type="button" name="button"><Previous Account</button> -->
 <button class="js-next" data-id="<%= @company.id %>" onclick= nextCompany()>Next Account ---></button>

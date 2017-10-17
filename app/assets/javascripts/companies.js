@@ -19,18 +19,24 @@ function moreInfo(element){
 function hideInfo(element){
   var id = element.dataset.id
   $("#company-"+id).html("")
-  $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company" class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
+  $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company"
+  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
 }
 
 function nextCompany(){
   var nextId = parseInt($(".js-next").attr("data-id")) + 1
-  console.log(nextId)
   updateView(nextId)
   }
 
 function updateView(showId){
   $.get('/companies/' + showId + '.json', function(data){
-    console.log(data)
+    console.log(data["customer"])
+    var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + data["revenue"]
+    var customerStatus = "<b>" + "Customer:" + "</b>" + data["customer"]
+    $("h3").text(data["name"])
+    $("p.revenue").text(revenueNumber)
+    $("p.customer").text(customerStatus)
+
       //
       // fetch(`https://localhost:3000/companies/${showId}`)
       //   .then(function(res){
