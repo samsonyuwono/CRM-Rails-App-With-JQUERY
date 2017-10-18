@@ -9,7 +9,6 @@ function moreInfo(element){
       "<b>" + " Email:" + "</b>" + " " + leads[i]["email"] + " " + "|" +
       "<b>" + " Contact?" + "</b>" + leads[i]["contact"] + "</li>"
 
-
     }
     $("#company-" +id).html(infoList)
   })
@@ -28,6 +27,10 @@ function nextCompany(){
   updateView(nextId)
   }
 
+function previousCompany(){
+  var prevId = parseInt($(".js-previous").attr("data-id")) - 1
+  updateView(prevId)
+}
 function updateView(showId){
   $.get('/companies/' + showId + '.json', function(data){
     var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + data["revenue"]
@@ -38,7 +41,7 @@ function updateView(showId){
     var companyLeadInfo = ""
       for (var i = 0; i < leadData.length; i++){
         companyLeadInfo += "<li>" + "<b>" + leadData[i]["name"] + "</b>" + " " + "|" +
-        "<b>" + " Contact?:" + "</b>" + leadData[i]["contact"] + "</li>"
+        "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] + "</li>"
         console.log(leadData[i]["id"])
       }
       console.log(companyLeadInfo)
@@ -48,6 +51,7 @@ function updateView(showId){
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
     $("ul").html(companyLeadInfo)
+    $(".js-previous").attr("data-id", data["id"])
     $(".js-next").attr("data-id", data["id"])
     $(".add-lead").html(`<a href="/companies/${data["id"]}/leads/new">Add a lead/contact</a>`)
     $(".edit-link").html(`<a href="/companies/${data["id"]}/edit">Edit Company</a>`)
@@ -55,6 +59,6 @@ function updateView(showId){
   })
 }
 
-function leadData(){
+function addLinks(){
 
 }
