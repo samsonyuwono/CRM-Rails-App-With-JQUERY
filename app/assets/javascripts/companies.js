@@ -60,7 +60,3 @@ function updateView(showId){
     $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)
   })
 }
-
-function addLinks(){
-
-}

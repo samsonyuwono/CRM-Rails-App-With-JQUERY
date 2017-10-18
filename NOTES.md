@@ -14,8 +14,8 @@
 Build Comments for each Company show page
 - Create form
 - Create new controller and actions for comments
-- Create new comments model
-- Create new comments serializer
+- Create new comments model- done
+- Create new comments serializer- done
 
 <!-- <h3>Comments</h3>
 <%= form_for @comment do |f| %>
