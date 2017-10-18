@@ -9,8 +9,7 @@
 
 
 10/16 EOD
-- add next and back for company show page
-- add comment section for lead show page
+- build comment section for lead or company show page
 
 Build Comments for each Company show page
 - Create form

@@ -38,24 +38,26 @@ function updateView(showId){
     var companyLeads =  "<b>" + data["name"] + "'s" + " " + "Leads/Contacts" + "</b>"
 
     var leadData= data["leads"]
+    var leadId = []
     var companyLeadInfo = ""
       for (var i = 0; i < leadData.length; i++){
         companyLeadInfo += "<li>" + "<b>" + leadData[i]["name"] + "</b>" + " " + "|" +
         "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] + "</li>"
-        console.log(leadData[i]["id"])
+        leadId.push(leadData[i]["id"])
       }
-      console.log(companyLeadInfo)
-
+      console.log(leadId)
     $("h3").text(data["name"])
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
-    $("ul").html(companyLeadInfo)
+    // $("ul.company-info").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]>${companyLeadInfo}</a>`)
+    $("ul.company-info").html(companyLeadInfo)
     $(".js-previous").attr("data-id", data["id"])
     $(".js-next").attr("data-id", data["id"])
+    $("ul li #edit-lead").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]>Edit Lead</a>`)
     $(".add-lead").html(`<a href="/companies/${data["id"]}/leads/new">Add a lead/contact</a>`)
-    $(".edit-link").html(`<a href="/companies/${data["id"]}/edit">Edit Company</a>`)
-    $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)//has to render delete action
+    // $(".edit-link").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]/edit">Edit Company</a>`)
+    $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)
   })
 }
 
