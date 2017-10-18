@@ -5,10 +5,9 @@
 <!-- <button type="button" name="button"><Previous Account</button> -->
 <button class="js-next" data-id="<%= @company.id %>" onclick= nextCompany()>Next Account ---></button>
 
-
-<ul>
-
   <h4><%= @company.name%>'s Leads/Contacts</h4>
+<ul class= "company-info">
+
     <% @company.leads.each do |lead| %>
   <li><b> <%= link_to lead.name, company_lead_path(current_user, lead) %> </b>|
     <b>Contact?:</b> <%= lead.contact  %> |
@@ -16,6 +15,7 @@
   <%end %>
 
 </ul>
+
 <div class="add-lead">
 <%= link_to "Add a lead/contact", new_company_lead_path(@company) %> </br>
 </div>

@@ -20,7 +20,7 @@ function hideInfo(element){
   var id = element.dataset.id
   $("#company-"+id).html("")
   $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company"
-  class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Cities</button>`)
+  class="js-more" data-id="${id}" onclick="moreInfo(this)"></button>`)
 }
 
 function nextCompany(){
@@ -30,15 +30,31 @@ function nextCompany(){
 
 function updateView(showId){
   $.get('/companies/' + showId + '.json', function(data){
-    console.log(data["customer"])
     var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + data["revenue"]
     var customerStatus = "<b>" + "Customer:" + "</b>" + " "+ data["customer"]
+    var companyLeads =  "<b>" + data["name"] + "'s" + " " + "Leads/Contacts" + "</b>"
+
+    var leadData= data["leads"]
+    var companyLeadInfo = ""
+      for (var i = 0; i < leadData.length; i++){
+        companyLeadInfo += "<li>" + "<b>" + leadData[i]["name"] + "</b>" + " " + "|" +
+        "<b>" + " Contact?:" + "</b>" + leadData[i]["contact"] + "</li>"
+        console.log(leadData[i]["id"])
+      }
+      console.log(companyLeadInfo)
+
     $("h3").text(data["name"])
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
+    $("h4").html(companyLeads)
+    $("ul").html(companyLeadInfo)
     $(".js-next").attr("data-id", data["id"])
     $(".add-lead").html(`<a href="/companies/${data["id"]}/leads/new">Add a lead/contact</a>`)
     $(".edit-link").html(`<a href="/companies/${data["id"]}/edit">Edit Company</a>`)
     $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)//has to render delete action
   })
+}
+
+function leadData(){
+
 }
