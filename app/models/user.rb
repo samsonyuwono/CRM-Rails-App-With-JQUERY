@@ -6,7 +6,7 @@ class User < ApplicationRecord
           :omniauthable, :omniauth_providers => [:facebook]
 
     has_many :companies
-    # has_many :company_leads
+    has_many :company_leads
     has_many :leads, through: :company_leads
 
 

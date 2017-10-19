@@ -41,11 +41,12 @@ function updateView(showId){
     var leadId = []
     var companyLeadInfo = ""
       for (var i = 0; i < leadData.length; i++){
-        companyLeadInfo += "<li>" + `<a href='#'>` + leadData[i]["name"] + `</a>` + " " + "|" +
-        "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] + "</li>"
         leadId.push(leadData[i]["id"])
+        console.log(leadData[i]["id"])
+
+        companyLeadInfo += "<li>" + `<a href=showId/leads/` + leadData[i]["id"] + `>` + leadData[i]["name"] + `</a>` + " " + "|" +
+        "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] + "</li>"
       }
-      console.log(data["leads"]["id"])
     $("h3").text(data["name"])
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'user/index'
 
-  get 'users/get_current_user', to: 'user#get_current_user'
+  get 'users/current_user', to: 'user#get_current_user'
 
   get 'users/:id', to: 'user#show'
 
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
 
   resources :comments
+  resources :users
 
   root 'static#home', as: 'home'
   get 'customers', to: 'static#customers'
