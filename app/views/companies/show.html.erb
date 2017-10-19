@@ -9,8 +9,8 @@
 <ul class= "company-info">
     <% @company.leads.each do |lead| %>
   <li><b> <%= link_to lead.name, company_lead_path(current_user, lead) %> </b>|
-    <b>Contact?:</b> <%= lead.contact  %> |
-  <span id="edit-lead"><%= link_to 'Edit Lead', edit_company_lead_path(current_user, lead) %></span></li>
+    <b>Contact?:</b> <%= lead.contact  %></li>
+  <!-- <span id="edit-lead"><%= link_to 'Edit Lead', edit_company_lead_path(current_user, lead) %></span></li> -->
   <%end %>
 
 </ul>
@@ -32,5 +32,5 @@
   <span id= "company-field">
     <%= f.hidden_field :company_id, value: @company.id %>
   </span>
-  <%= f.submit "Submit", id: "submit" %>
+  <%= f.submit "Submit", id: "submit"%>
 <% end %>
