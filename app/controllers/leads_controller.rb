@@ -18,7 +18,7 @@ class LeadsController < ApplicationController
   end
 
   def show
-    #  @lead = Lead.find(params[:id])
+     @lead = Lead.find(params[:id])
      respond_to do |f|
        f.html {render :show}
        f.json {render json: @lead}

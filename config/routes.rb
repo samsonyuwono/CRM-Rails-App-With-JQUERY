@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
 
   resources :comments
-  resources :users
 
   root 'static#home', as: 'home'
   get 'customers', to: 'static#customers'

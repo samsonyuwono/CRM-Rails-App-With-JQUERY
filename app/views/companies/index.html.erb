@@ -1,13 +1,15 @@
 <% if @companies != [] %>
 <h2>Your accounts and in-progress accounts</h2>
-<ul>
+<ul class="company-list">
   <% @companies.each do |company| %>
 
-    <b><%= link_to company.name, company_path(company)%></b>
-    <button id="more-<%=company.id%>-company" class="js-more" data-id="<%= company.id %>" onclick="moreInfo(this)">Show Leads/Contacts</button> </br>
-    <ul id="company-<%=company.id%>">
+    <li id="<%=company.id%>">
+      <b><%= link_to company.name, company_path(company)%></b>
+      <button id="more-<%=company.id%>-company" class="js-more" data-id="<%= company.id %>" onclick="moreInfo(this)">Show Leads/Contacts</button> </br>
+      <ul id="company-<%=company.id%>">
+      </ul>
+    </li>
 
-    </ul>
   <%end%>
 </ul>
   <% else %>

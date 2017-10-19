@@ -23,7 +23,7 @@ function hideInfo(element){
 }
 
 function nextCompany(){
-  var nextId = parseInt($(".js-next").attr("data-id")) + 1
+  var nextId = parseInt($(".js-next").attr("data-id")) + 1//rework
   updateView(nextId)
   }
 
@@ -31,6 +31,8 @@ function previousCompany(){
   var prevId = parseInt($(".js-previous").attr("data-id")) - 1
   updateView(prevId)
 }
+
+
 function updateView(showId){
   $.get('/companies/' + showId + '.json', function(data){
     var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + data["revenue"]
@@ -38,24 +40,20 @@ function updateView(showId){
     var companyLeads =  "<b>" + data["name"] + "'s" + " " + "Leads/Contacts" + "</b>"
 
     var leadData= data["leads"]
-    var leadId = []
+
     var companyLeadInfo = ""
       for (var i = 0; i < leadData.length; i++){
-        leadId.push(leadData[i]["id"])
-        console.log(leadData[i]["id"])
-
         companyLeadInfo += "<li>" + `<a href=showId/leads/` + leadData[i]["id"] + `>` + leadData[i]["name"] + `</a>` + " " + "|" +
-        "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] + "</li>"
+        "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] +  "</li>"
       }
     $("h3").text(data["name"])
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
-    // $("ul.company-info").html(`<a href="/companies/${data["id"]}/leads/${data["leads"]["id"]}>${companyLeadInfo}</a>`)
     $("ul.company-info").html(companyLeadInfo)
     $(".js-previous").attr("data-id", data["id"])
     $(".js-next").attr("data-id", data["id"])
-    $("ul li #edit-lead").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]>Edit Lead</a>`)
+    // $("ul li #edit-lead").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]>Edit Lead</a>`)
     $(".add-lead").html(`<a href="/companies/${data["id"]}/leads/new">Add a lead/contact</a>`)
     // $(".edit-link").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]/edit">Edit Company</a>`)
     $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)

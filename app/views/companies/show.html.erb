@@ -10,7 +10,7 @@
     <% @company.leads.each do |lead| %>
   <li><b> <%= link_to lead.name, company_lead_path(current_user, lead) %> </b>|
     <b>Contact?:</b> <%= lead.contact  %></li>
-  <!-- <span id="edit-lead"><%= link_to 'Edit Lead', edit_company_lead_path(current_user, lead) %></span></li> -->
+<span id="edit-lead"><%= link_to 'Edit Lead', edit_company_lead_path(current_user, lead) %></span></li>
   <%end %>
 
 </ul>
