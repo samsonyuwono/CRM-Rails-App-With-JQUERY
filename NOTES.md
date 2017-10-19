@@ -17,18 +17,25 @@ Build Comments for each Company show page
 - Create new comments model- done
 - Create new comments serializer- done
 
-<!-- <h3>Comments</h3>
-<%= form_for @comment do |f| %>
-  <label>Add a comment:</label>
-  <%= f.text_field :text %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <span id= "company-field">
-    <%= f.hidden_field :country_id, value: @company.id %>
-  </span>
-  <%= f.submit "Submit", id: "submit" %>
-<% end %> -->
-
 Stretch
 
 Decide where to add comments after all other requirements are achieved
 - Make each lead in drop-down menu clickable
+
+function nextCompany(){
+  // var nextId = parseInt($(".js-next").attr("data-id")) +1
+  //get the id on companies index page
+  //grab ul and loop thorugh it
+  var companyId = []
+
+    $.get('/companies' + '.json', function(data){
+      $('.company-list' ).attr("data")
+      console.log(data)
+      for(var i= 0; i < data.length; i++){
+      companyId.push(data["id"])
+      }
+
+  })
+
+  // updateView(nextId)
+  }
