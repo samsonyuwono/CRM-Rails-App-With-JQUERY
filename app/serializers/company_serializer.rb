@@ -1,5 +1,4 @@
 class CompanySerializer < ActiveModel::Serializer
-  attributes :id, :name, :revenue, :customer
-  # has_many :leads, through: :company_leads
+  attributes :id, :name, :revenue, :customer, :user_id
   has_many :leads
 end

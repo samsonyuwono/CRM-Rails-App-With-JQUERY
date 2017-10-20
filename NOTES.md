@@ -8,34 +8,16 @@
 
 
 
-10/16 EOD
-- build comment section for lead or company show page
+1. Make sure next goes beyond 1 page
+2. Make add-lead, edit-link work on page
 
 Build Comments for each Company show page
-- Create form
-- Create new controller and actions for comments
-- Create new comments model- done
-- Create new comments serializer- done
+- Create form [x]
+- Create new controller and actions for comments [x]
+- Create new comments model- [x]
+- Create new comments serialize [x]
 
 Stretch
 
 Decide where to add comments after all other requirements are achieved
 - Make each lead in drop-down menu clickable
-
-function nextCompany(){
-  // var nextId = parseInt($(".js-next").attr("data-id")) +1
-  //get the id on companies index page
-  //grab ul and loop thorugh it
-  var companyId = []
-
-    $.get('/companies' + '.json', function(data){
-      $('.company-list' ).attr("data")
-      console.log(data)
-      for(var i= 0; i < data.length; i++){
-      companyId.push(data["id"])
-      }
-
-  })
-
-  // updateView(nextId)
-  }

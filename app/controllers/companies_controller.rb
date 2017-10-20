@@ -49,8 +49,9 @@ before_action :current_company, only: %i[show edit update destroy]
 
   def next
     company = current_user.next_company(params[:id])
-    render json: company
+    render json: company, status: 201
   end
+
 
  private
 

@@ -56,7 +56,7 @@ class User < ApplicationRecord
     end
     counter.count
   end
-  # c.find(50).leads
+
 
   def total_accounts
     counter = []
@@ -69,7 +69,6 @@ class User < ApplicationRecord
   def next_company(id)
     self.companies.where('id > ?', id).first
   end
-
 
 
 end

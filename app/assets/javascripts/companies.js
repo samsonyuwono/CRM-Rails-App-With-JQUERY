@@ -32,28 +32,28 @@ function nextCompany(){
     console.log(company)
     newCompany.updateView()
   })
-  // updateView(nextId)
-  }
+}
 
 function previousCompany(){
   var prevId = parseInt($(".js-previous").attr("data-id")) - 1
   updateView(prevId)
 }
 
-function Company(name, revenue, customer, user_id, leads) {
+let companyId = 0
+function Company(name, revenue, customer, id, leads) {
   this.name = name
   this.revenue = revenue
   this.customer = customer
-  this.user_id = user_id
+  this.company_id = companyId++
   this.leads = leads
 }
 
 
 Company.prototype.updateView = function(){
 
-    var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + this.revenue
+    var revenueNumber = `<b> Revenue (in thousands): </b> this.revenue`
     var customerStatus = `<b> Customer: </b> ${this.customer}`
-    var companyLeads =  "<b>" + this.name + "'s" + " " + "Leads/Contacts" + "</b>"
+    var companyLeads =  `<b> (this.name)'s Leads/Contacts </b>`
 
     var leadData= this.leads
 
@@ -67,10 +67,8 @@ Company.prototype.updateView = function(){
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
     $("ul.company-info").html(companyLeadInfo)
-    $(".js-previous").attr("data-id", this.id)
-    $(".js-next").attr("data-id", this.id)
-    $(".add-lead").html(`<a href="/companies/${this.id}/leads/new">Add a lead/contact</a>`)
-    $(".edit-link").html(`<a href="/companies/${this.id}/edit">Edit Company</a>`)
-    $(".delete-link").html(`<a href="/companies/${this.id}/destroy">Delete Company</a>`)
-
+    $(".js-next").attr("data-id", this.company_id)
+    $(".add-lead").html(`<a href="/companies/${this.company_id}/leads/new">Add a lead/contact</a>`)
+    $(".edit-link").html(`<a href="/companies/${this.company_id}/edit">Edit Company</a>`)
+    $(".delete-link").html(`<a href="/companies/${this.company_id}/destroy">Delete Company</a>`)
 }

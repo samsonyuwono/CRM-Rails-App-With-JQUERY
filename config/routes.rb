@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'user#show'
 
   get 'companies/:id/next', to: 'companies#next'
+  # get 'companies/:id/previous', to: 'companies#previous'
 
   devise_for :users, controllers: {registrations: 'user/registrations',
     omniauth_callbacks: 'user/omniauth_callbacks'}
