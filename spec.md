@@ -16,7 +16,7 @@ Specs:
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM. - Index resource requirement will achieve this requirement
 - [ ] Use your Rails API and a form to create a resource and render the response without a page refresh. -  Included in the company show page is an option to add comments
 - [ ] Translate JSON responses into js model objects.
-- [ ] At least one of the js model objects must have at least one method added by your code to the prototype.????
+- [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
 
 Confirm
 - [ ] You have a large number of small Git commits

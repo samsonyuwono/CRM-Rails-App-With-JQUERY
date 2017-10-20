@@ -47,6 +47,11 @@ before_action :current_company, only: %i[show edit update destroy]
     redirect_to companies_path
   end
 
+  def next
+    company = current_user.next_company(params[:id])
+    render json: company
+  end
+
  private
 
  def company_params

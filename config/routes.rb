@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'user/index'
-
   get 'users/current_user', to: 'user#get_current_user'
-
   get 'users/:id', to: 'user#show'
+
+  get 'companies/:id/next', to: 'companies#next'
 
   devise_for :users, controllers: {registrations: 'user/registrations',
     omniauth_callbacks: 'user/omniauth_callbacks'}

@@ -66,6 +66,10 @@ class User < ApplicationRecord
     counter.count
   end
 
+  def next_company(id)
+    self.companies.where('id > ?', id).first
+  end
+
 
 
 end

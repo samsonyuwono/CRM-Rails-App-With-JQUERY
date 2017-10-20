@@ -23,20 +23,15 @@ function hideInfo(element){
 }
 
 function nextCompany(){
-  // var nextId = parseInt($(".js-next").attr("data-id")) +1
-  //get the id on companies index page
-  //grab ul and loop thorugh it
-  var companyId = []
-
-    $.get('/companies' + '.json', function(data){
-      $('.company-list li').attr('data["id"]')
-      console.log(data)
-      for(var i= 0; i < data.length; i++){
-      companyId.push(data["id"])
-      }
-      console.log(companyId)
+  var nextId = parseInt($(".js-next").attr("data-id"))
+  $.ajax({
+    type: "get",
+    url: `/companies/${nextId}/next`
+  }).done(function(company) {
+    var newCompany = new Company(company.name, company.revenue, company.customer, company.user_id, company.leads)
+    console.log(company)
+    newCompany.updateView()
   })
-
   // updateView(nextId)
   }
 
@@ -45,29 +40,37 @@ function previousCompany(){
   updateView(prevId)
 }
 
+function Company(name, revenue, customer, user_id, leads) {
+  this.name = name
+  this.revenue = revenue
+  this.customer = customer
+  this.user_id = user_id
+  this.leads = leads
+}
 
-function updateView(showId){
-  $.get('/companies/' + showId + '.json', function(data){
-    var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + data["revenue"]
-    var customerStatus = "<b>" + "Customer:" + "</b>" + " "+ data["customer"]
-    var companyLeads =  "<b>" + data["name"] + "'s" + " " + "Leads/Contacts" + "</b>"
 
-    var leadData= data["leads"]
+Company.prototype.updateView = function(){
+
+    var revenueNumber = "<b>" + "Revenue (in thousands):" + "</b>" + " " + this.revenue
+    var customerStatus = `<b> Customer: </b> ${this.customer}`
+    var companyLeads =  "<b>" + this.name + "'s" + " " + "Leads/Contacts" + "</b>"
+
+    var leadData= this.leads
 
     var companyLeadInfo = ""
-      for (var i = 0; i < leadData.length; i++){
-        companyLeadInfo += "<li>" + `<a href=showId/leads/` + leadData[i]["id"] + `>` + leadData[i]["name"] + `</a>` + " " + "|" +
-        "<b>" + " Contact?:" + "</b>" + " " + leadData[i]["contact"] +  "</li>"
+      for (var i = 0; i < this.leads.length; i++){
+        companyLeadInfo += "<li>" + `<a href=showId/leads/` + this.leads[i].id + `>` + this.leads[i].name + `</a>` + " " + "|" +
+        "<b>" + " Contact?:" + "</b>" + " " + this.leads[i].contact +  "</li>"
       }
-    $("h3").text(data["name"])
+    $("h3").text(this.name)
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
     $("ul.company-info").html(companyLeadInfo)
-    $(".js-previous").attr("data-id", data["id"])
-    $(".js-next").attr("data-id", data["id"])
-    $(".add-lead").html(`<a href="/companies/${data["id"]}/leads/new">Add a lead/contact</a>`)
-    $(".edit-link").html(`<a href="/companies/${data["id"]}/leads/data["leads"]["id"]/edit">Edit Company</a>`)
-    $(".delete-link").html(`<a href="/companies/${data["id"]}/destroy">Delete Company</a>`)
-  })
+    $(".js-previous").attr("data-id", this.id)
+    $(".js-next").attr("data-id", this.id)
+    $(".add-lead").html(`<a href="/companies/${this.id}/leads/new">Add a lead/contact</a>`)
+    $(".edit-link").html(`<a href="/companies/${this.id}/edit">Edit Company</a>`)
+    $(".delete-link").html(`<a href="/companies/${this.id}/destroy">Delete Company</a>`)
+
 }
