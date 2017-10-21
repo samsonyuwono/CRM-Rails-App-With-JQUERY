@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get 'user/index'
   get 'users/current_user', to: 'user#get_current_user'
   get 'users/:id', to: 'user#show'
-
   get 'companies/:id/next', to: 'companies#next'
-  # get 'companies/:id/previous', to: 'companies#previous'
+
+  post '/comments' => 'comments#create'
 
   devise_for :users, controllers: {registrations: 'user/registrations',
     omniauth_callbacks: 'user/omniauth_callbacks'}
@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     resources :leads, only: [:new, :create, :show, :edit, :update, :destroy]
   end
 
-  resources :leads
   resources :comments
+
+  resources :leads
+
+
 
   root 'static#home', as: 'home'
   get 'customers', to: 'static#customers'

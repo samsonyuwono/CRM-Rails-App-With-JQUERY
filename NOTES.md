@@ -17,6 +17,10 @@ Build Comments for each Company show page
 - Create new comments model- [x]
 - Create new comments serialize [x]
 
+For JS- Comments
+- Create comment and attach it to page
+- attach it to update view function
+
 Stretch
 
 Decide where to add comments after all other requirements are achieved

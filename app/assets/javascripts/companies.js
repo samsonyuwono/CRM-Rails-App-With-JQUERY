@@ -1,3 +1,8 @@
+$(document).ready(function(){
+  attachListeners()
+})
+
+
 function moreInfo(element){
   var id = element.dataset.id
   $.get('/companies/' + id + '.json', function(data){
@@ -40,7 +45,7 @@ function previousCompany(){
 }
 
 let companyId = 0
-function Company(name, revenue, customer, id, leads) {
+function Company(name, revenue, customer, company_id, leads) {
   this.name = name
   this.revenue = revenue
   this.customer = customer
@@ -51,9 +56,9 @@ function Company(name, revenue, customer, id, leads) {
 
 Company.prototype.updateView = function(){
 
-    var revenueNumber = `<b> Revenue (in thousands): </b> this.revenue`
+    var revenueNumber = `<b> Revenue (in thousands): </b> ${this.revenue}`
     var customerStatus = `<b> Customer: </b> ${this.customer}`
-    var companyLeads =  `<b> (this.name)'s Leads/Contacts </b>`
+    var companyLeads =  `<b> ${this.name}'s Leads/Contacts </b>`
 
     var leadData= this.leads
 
@@ -72,3 +77,34 @@ Company.prototype.updateView = function(){
     $(".edit-link").html(`<a href="/companies/${this.company_id}/edit">Edit Company</a>`)
     $(".delete-link").html(`<a href="/companies/${this.company_id}/destroy">Delete Company</a>`)
 }
+
+function attachListeners(){
+      $(".js-next").click(nextCompany)
+
+      $('form').submit(function(event){
+      event.preventDefault()
+      createNewComment(this)
+    })
+}
+
+
+
+function createNewComment(element){
+  var values= $(element).serialize()
+  var posting = $.post('/comment', values)
+  console.log(posting)
+
+  posting.done(function(data){
+    var comment = data["text"]
+    // var comment = new Comment(this.text, this.user_id, this.company_id)
+    console.log(comment)
+  });
+}
+
+
+// function Comment(text, user_id, company_id){
+//   this.text = text
+//   this.user_id = user_id
+//   this.company_id = company_id
+//
+// }
