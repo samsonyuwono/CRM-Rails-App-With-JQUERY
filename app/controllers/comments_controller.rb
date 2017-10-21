@@ -1,18 +1,8 @@
 class CommentsController < ApplicationController
-  protect_from_forgery
-
-  def index
-    @comments = Comment.all
-    render json: @comments
-  end
-
-  def new
-    @comment = @company.comments.build
-  end
+  
 
   def create
-    @company = Company.find(params[:company_id])
-    @comment = current_user.comments.build(comment_params)
+    @comment = Comment.create(comments_params)
     render json: @comment, status: 201
   end
 
@@ -22,8 +12,14 @@ class CommentsController < ApplicationController
     render json: @comment
   end
 
+  def index
+    @comments = Comment.all
+    render json: @comments
+  end
+
   private
   def comments_params
     params.require(:comment).permit(:text, :user_id, :company_id)
   end
+
 end

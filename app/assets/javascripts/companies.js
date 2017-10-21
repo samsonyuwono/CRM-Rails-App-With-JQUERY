@@ -91,20 +91,24 @@ function attachListeners(){
 
 function createNewComment(element){
   var values= $(element).serialize()
-  var posting = $.post('/comment', values)
+  var posting = $.post('/comments', values)
   console.log(posting)
 
-  posting.done(function(data){
-    var comment = data["text"]
-    // var comment = new Comment(this.text, this.user_id, this.company_id)
-    console.log(comment)
-  });
+  // posting.done(function(data){
+  //   // var comment = data["text"]
+  posting.done(function(data) {
+        var comment = data;
+        $("#comment").text(comment["text"]);
+        console.log(comment)
+        console.log(comment["company"]["user_id"])
+      });
+
 }
 
 
-// function Comment(text, user_id, company_id){
-//   this.text = text
-//   this.user_id = user_id
-//   this.company_id = company_id
-//
-// }
+function Comment(text, user_id, company_id){
+  this.text = text
+  this.user_id = user_id
+  this.company = company_id
+
+}
