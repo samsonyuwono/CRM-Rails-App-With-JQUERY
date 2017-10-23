@@ -29,10 +29,21 @@ class User < ApplicationRecord
   def total_revenue
     total= 0
     companies.each do |company|
-      total+= company.revenue
+      if company.customer == true
+        total+= company.revenue
+      end
     end
     total
   end
+
+  def total_pipeline
+    total= 0
+    companies.each do |company|
+      total+= company.revenue
+    end
+  total
+end
+
 
   def total_contacts
     counter = []

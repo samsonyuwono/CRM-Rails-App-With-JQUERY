@@ -59,7 +59,7 @@ Company.prototype.updateView = function(){
     var leadData= this.leads
 
     var commentData = this.comments
-    console.log(commentData)
+
     var companyLeadInfo = ""
       for (var i = 0; i < this.leads.length; i++){
         companyLeadInfo += "<li>" + `<a href=showId/leads/` + this.leads[i].id + `>` + this.leads[i].name + `</a>` + " " + "|" +
@@ -74,8 +74,16 @@ Company.prototype.updateView = function(){
     $(".add-lead").html(`<a href="/companies/${this.company_id}/leads/new">Add a lead/contact</a>`)
     $(".edit-link").html(`<a href="/companies/${this.company_id}/edit">Edit Company</a>`)
     $(".delete-link").html(`<a href="/companies/${this.company_id}/destroy">Delete Company</a>`)
-    $("#comments").html(commentData)
+    $("#comments").html(this.comments)
 
+}
+
+function formatLeadList(){
+      var companyLeadInfo = ""
+        for (var i = 0; i < this.leads.length; i++){
+          companyLeadInfo += "<li>" + `<a href=showId/leads/` + this.leads[i].id + `>` + this.leads[i].name + `</a>` + " " + "|" +
+          "<b>" + " Contact?:" + "</b>" + " " + this.leads[i].contact +  "</li>"
+        }
 }
 
 function attachListeners(){
@@ -94,20 +102,20 @@ function attachListeners(){
 }
 
 
-// function formatCommentList(comments){
-//   let commentText = ""
-//   for (var i = 0; i < comments.length; i++) {
-//     let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["user"],comments[i]["company"]["name"])
-//
-//     console.log(comments[i]["user"]["id"])
-//     if (comments[i]["user"]["id"] === parseInt($("#comment_user_id").attr("value"))){
-//       commentText += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
-//     } else {
-//        commentText += com.formatComment() + "</li>"
-//     }
-//   }
-//   return commentText
-// }
+function formatCommentList(comments){
+  let commentText = ""
+  for (var i = 0; i < comments.length; i++) {
+    let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["user"],comments[i]["company"]["name"])
+
+    console.log(comments[i]["user"]["id"])
+    if (comments[i]["user"]["id"] === parseInt($("#comment_user_id").attr("value"))){
+      commentText += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
+    } else {
+       commentText += com.formatComment() + "</li>"
+    }
+  }
+  return commentText
+}
 
 
 function deleteComment(element){
