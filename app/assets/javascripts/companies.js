@@ -41,12 +41,13 @@ function nextCompany(){
 
 
 let companyId = 0
-function Company(name, revenue, customer, company_id, leads) {
+function Company(name, revenue, customer, company_id, leads, comments) {
   this.name = name
   this.revenue = revenue
   this.customer = customer
   this.company_id = companyId++
   this.leads = leads
+  this.comments = comments
 }
 
 
@@ -57,19 +58,14 @@ Company.prototype.updateView = function(){
     var companyLeads =  `<b> ${this.name}'s Leads/Contacts </b>`
 
     var leadData= this.leads
-
+    var formatLeads = formatLeadList(leadData)
     var commentData = this.comments
 
-    var companyLeadInfo = ""
-      for (var i = 0; i < this.leads.length; i++){
-        companyLeadInfo += "<li>" + `<a href=showId/leads/` + this.leads[i].id + `>` + this.leads[i].name + `</a>` + " " + "|" +
-        "<b>" + " Contact?:" + "</b>" + " " + this.leads[i].contact +  "</li>"
-      }
     $("h3").text(this.name)
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
-    $("ul.company-info").html(companyLeadInfo)
+    $("ul.company-info").html(formatLeads)
     $(".js-next").attr("data-id", this.company_id)
     $(".add-lead").html(`<a href="/companies/${this.company_id}/leads/new">Add a lead/contact</a>`)
     $(".edit-link").html(`<a href="/companies/${this.company_id}/edit">Edit Company</a>`)
@@ -78,12 +74,14 @@ Company.prototype.updateView = function(){
 
 }
 
-function formatLeadList(){
+function formatLeadList(leads){
       var companyLeadInfo = ""
-        for (var i = 0; i < this.leads.length; i++){
-          companyLeadInfo += "<li>" + `<a href=showId/leads/` + this.leads[i].id + `>` + this.leads[i].name + `</a>` + " " + "|" +
-          "<b>" + " Contact?:" + "</b>" + " " + this.leads[i].contact +  "</li>"
+      console.log(this.leads)
+        for (var i = 0; i < leads.length; i++){
+          companyLeadInfo += "<li>" + `<a href=showId/leads/` + leads[i].id + `>` + leads[i].name + `</a>` + " " + "|" +
+          "<b>" + " Contact?:" + "</b>" + " " + leads[i].contact +  "</li>"
         }
+        return companyLeadInfo
 }
 
 function attachListeners(){
