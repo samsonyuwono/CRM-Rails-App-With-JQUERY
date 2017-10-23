@@ -8,21 +8,16 @@
 
 
 
-1. Make sure next goes beyond 1 page
-2. Make add-lead, edit-link work on page
+To - do
+- Make sure next brings up comments associated with company
+- Fix next button
 
-Build Comments for each Company show page
-- Create form [x]
-- Create new controller and actions for comments [x]
-- Create new comments model- [x]
-- Create new comments serialize [x]
 
-For JS- Comments
-- Attach comments without a page refresh
-- make sure page goes next without attached comments
-- make sure delete button shows up and works
+
 
 Stretch
 
 Decide where to add comments after all other requirements are achieved
 - Make each lead in drop-down menu clickable
+
+- Add images to project

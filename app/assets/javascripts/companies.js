@@ -84,6 +84,7 @@ function attachListeners(){
       $('form').submit(function(event){
       event.preventDefault()
       createNewComment(this)
+      console.log(this)
     })
 
     $(".delete-comment").click(function(event){
@@ -93,25 +94,24 @@ function attachListeners(){
 }
 
 
-function formatCommentList(comments){
-  let commentText = ""
-  for (var i = 0; i < comments.length; i++) {
-    let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["user"],comments[i]["company"]["name"])
-
-    console.log(comments[i]["user"]["id"])
-    if (comments[i]["user"]["id"] === parseInt($("#comment_user_id").attr("value"))){
-      commentText += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
-    } else {
-       commentText += com.formatComment() + "</li>"
-    }
-  }
-  return commentText
-}
+// function formatCommentList(comments){
+//   let commentText = ""
+//   for (var i = 0; i < comments.length; i++) {
+//     let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["user"],comments[i]["company"]["name"])
+//
+//     console.log(comments[i]["user"]["id"])
+//     if (comments[i]["user"]["id"] === parseInt($("#comment_user_id").attr("value"))){
+//       commentText += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
+//     } else {
+//        commentText += com.formatComment() + "</li>"
+//     }
+//   }
+//   return commentText
+// }
 
 
 function deleteComment(element){
   var commentId = element.attributes["data"].value
-  console.log(commentId)
   $.ajax({
     url: '/comments/' +commentId,
     type: 'DELETE',
@@ -127,17 +127,11 @@ function createNewComment(element){
 
   posting.done(function(comment) {
 
-    //creates new comment object
         var newComment = new Comment(comment.id, comment.text, comment.user, comment.company)
-        console.log(newComment)
 
-
-        // adds new comment
         var createdComment = newComment.formatComment() + " <button class='delete-comment' data='" + comment.id + "' onclick='deleteComment(this)'>Delete</button></li>"
-        console.log(createdComment)
-        $("#comment").append(createdComment);
+        $("#comments").append(createdComment);
 
-        //reset comment form
         $("#submit").prop( "disabled", false )
         $("#comment_text").val("")
       });
