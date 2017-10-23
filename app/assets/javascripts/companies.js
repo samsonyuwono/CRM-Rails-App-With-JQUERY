@@ -39,10 +39,6 @@ function nextCompany(){
   })
 }
 
-function previousCompany(){
-  var prevId = parseInt($(".js-previous").attr("data-id")) - 1
-  updateView(prevId)
-}
 
 let companyId = 0
 function Company(name, revenue, customer, company_id, leads) {
@@ -62,6 +58,8 @@ Company.prototype.updateView = function(){
 
     var leadData= this.leads
 
+    var commentData = this.comments
+    console.log(commentData)
     var companyLeadInfo = ""
       for (var i = 0; i < this.leads.length; i++){
         companyLeadInfo += "<li>" + `<a href=showId/leads/` + this.leads[i].id + `>` + this.leads[i].name + `</a>` + " " + "|" +
@@ -76,6 +74,8 @@ Company.prototype.updateView = function(){
     $(".add-lead").html(`<a href="/companies/${this.company_id}/leads/new">Add a lead/contact</a>`)
     $(".edit-link").html(`<a href="/companies/${this.company_id}/edit">Edit Company</a>`)
     $(".delete-link").html(`<a href="/companies/${this.company_id}/destroy">Delete Company</a>`)
+    $("#comments").html(commentData)
+
 }
 
 function attachListeners(){
@@ -85,30 +85,74 @@ function attachListeners(){
       event.preventDefault()
       createNewComment(this)
     })
+
+    $(".delete-comment").click(function(event){
+      event.preventDefault()
+      deleteComment(this)
+    })
 }
 
 
+function formatCommentList(comments){
+  let commentText = ""
+  for (var i = 0; i < comments.length; i++) {
+    let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["user"],comments[i]["company"]["name"])
+
+    console.log(comments[i]["user"]["id"])
+    if (comments[i]["user"]["id"] === parseInt($("#comment_user_id").attr("value"))){
+      commentText += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
+    } else {
+       commentText += com.formatComment() + "</li>"
+    }
+  }
+  return commentText
+}
+
+
+function deleteComment(element){
+  var commentId = element.attributes["data"].value
+  console.log(commentId)
+  $.ajax({
+    url: '/comments/' +commentId,
+    type: 'DELETE',
+    success: function(result){
+      $("#comment-"+result["id"]).replaceWith("")
+    }
+  })
+}
 
 function createNewComment(element){
   var values= $(element).serialize()
   var posting = $.post('/comments', values)
-  console.log(posting)
 
-  // posting.done(function(data){
-  //   // var comment = data["text"]
-  posting.done(function(data) {
-        var comment = data;
-        $("#comment").text(comment["text"]);
-        console.log(comment)
-        console.log(comment["company"]["user_id"])
+  posting.done(function(comment) {
+
+    //creates new comment object
+        var newComment = new Comment(comment.id, comment.text, comment.user, comment.company)
+        console.log(newComment)
+
+
+        // adds new comment
+        var createdComment = newComment.formatComment() + " <button class='delete-comment' data='" + comment.id + "' onclick='deleteComment(this)'>Delete</button></li>"
+        console.log(createdComment)
+        $("#comment").append(createdComment);
+
+        //reset comment form
+        $("#submit").prop( "disabled", false )
+        $("#comment_text").val("")
       });
 
 }
 
 
-function Comment(text, user_id, company_id){
+function Comment(id, text, user, company){
+  this.id = id
   this.text = text
-  this.user_id = user_id
-  this.company = company_id
+  this.user = user
+  this.company = company
 
 }
+
+Comment.prototype.formatComment = function(){
+    return "<li id='comment-"+ this.id +"'><strong>" + this.text + "</strong>"
+  }

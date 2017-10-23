@@ -18,8 +18,9 @@ Build Comments for each Company show page
 - Create new comments serialize [x]
 
 For JS- Comments
-- Create comment and attach it to page
-- attach it to update view function
+- Attach comments without a page refresh
+- make sure page goes next without attached comments
+- make sure delete button shows up and works
 
 Stretch
 

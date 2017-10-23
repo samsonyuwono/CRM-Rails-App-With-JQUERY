@@ -29,10 +29,8 @@
   <ul id="comments">
     <% @company.comments.each do |comment|%>
       <li id="comment-<%=comment.id%>">
-      <b><%= comment.user %>: </b><%= comment.text%>
-      <%if current_user == comment.user%>
+      <strong><%= comment.text%></strong>
       <button class="delete-comment" data="<%=comment.id%>">Delete</button>
-        <%end%>
       </li>
     <% end %>
   </ul>
