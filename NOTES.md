@@ -7,17 +7,9 @@
 4. User will be able to add notes to a account/customer
 
 
-
-To - do
-- Make sure next brings up comments associated with company
-- Fix next button
-
-
-
-
 Stretch
 
 Decide where to add comments after all other requirements are achieved
 - Make each lead in drop-down menu clickable
-
+- Make a previous button that goes back to last company
 - Add images to project

@@ -33,19 +33,17 @@ function nextCompany(){
     type: "get",
     url: `/companies/${nextId}/next`
   }).done(function(company) {
-    var newCompany = new Company(company.name, company.revenue, company.customer, company.user_id, company.leads)
+    var newCompany = new Company(company.id, company.name, company.revenue, company.customer, company.leads, company.comments)
     console.log(company)
     newCompany.updateView()
   })
 }
 
-
-let companyId = 0
-function Company(name, revenue, customer, company_id, leads, comments) {
+function Company(id, name, revenue, customer, leads, comments) {
+  this.id = id
   this.name = name
   this.revenue = revenue
   this.customer = customer
-  this.company_id = companyId++
   this.leads = leads
   this.comments = comments
 }
@@ -58,31 +56,41 @@ Company.prototype.updateView = function(){
     var companyLeads =  `<b> ${this.name}'s Leads/Contacts </b>`
 
     var leadData= this.leads
-    var formatLeads = formatLeadList(leadData)
     var commentData = this.comments
+    var leadList = formatLeadList(leadData)
+    var commentList = formatCommentList(commentData)
 
     $("h3").text(this.name)
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
-    $("ul.company-info").html(formatLeads)
-    $(".js-next").attr("data-id", this.company_id)
-    $(".add-lead").html(`<a href="/companies/${this.company_id}/leads/new">Add a lead/contact</a>`)
-    $(".edit-link").html(`<a href="/companies/${this.company_id}/edit">Edit Company</a>`)
-    $(".delete-link").html(`<a href="/companies/${this.company_id}/destroy">Delete Company</a>`)
-    $("#comments").html(this.comments)
-
+    $("ul.company-info").html(leadList)
+    $(".js-next").attr("data-id", this.id)
+    $(".add-lead").html(`<a href="/companies/${this.id}/leads/new">Add a lead/contact</a>`) //fix company id
+    $(".edit-link").html(`<a href="/companies/${this.id}/edit">Edit Company</a>`)
+    $(".delete-link").html(`<a href="/companies/${this.id}/destroy">Delete Company</a>`)
+    $("#comments").html(commentList)
+    $("#company-field").html(`<input value="${this.id}" type="hidden" name="comment[company_id]" id="comment_company_id">`)
 }
 
 function formatLeadList(leads){
-      var companyLeadInfo = ""
-      console.log(this.leads)
-        for (var i = 0; i < leads.length; i++){
+    var companyLeadInfo = ""
+      for (var i = 0; i < leads.length; i++){
           companyLeadInfo += "<li>" + `<a href=showId/leads/` + leads[i].id + `>` + leads[i].name + `</a>` + " " + "|" +
           "<b>" + " Contact?:" + "</b>" + " " + leads[i].contact +  "</li>"
         }
         return companyLeadInfo
 }
+
+function formatCommentList(comments){
+  var commentInfo = ""
+  for (var i = 0; i < comments.length; i++) {
+    let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["company"]["user_id"],comments[i]["company"]["name"])
+    commentInfo += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
+  }
+  return commentInfo
+}
+
 
 function attachListeners(){
       $(".js-next").click(nextCompany)
@@ -90,29 +98,13 @@ function attachListeners(){
       $('form').submit(function(event){
       event.preventDefault()
       createNewComment(this)
-      console.log(this)
+
     })
 
     $(".delete-comment").click(function(event){
       event.preventDefault()
       deleteComment(this)
     })
-}
-
-
-function formatCommentList(comments){
-  let commentText = ""
-  for (var i = 0; i < comments.length; i++) {
-    let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["user"],comments[i]["company"]["name"])
-
-    console.log(comments[i]["user"]["id"])
-    if (comments[i]["user"]["id"] === parseInt($("#comment_user_id").attr("value"))){
-      commentText += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
-    } else {
-       commentText += com.formatComment() + "</li>"
-    }
-  }
-  return commentText
 }
 
 
@@ -133,7 +125,7 @@ function createNewComment(element){
 
   posting.done(function(comment) {
 
-        var newComment = new Comment(comment.id, comment.text, comment.user, comment.company)
+        var newComment = new Comment(comment.id, comment.text, comment.user_id, comment.company)
 
         var createdComment = newComment.formatComment() + " <button class='delete-comment' data='" + comment.id + "' onclick='deleteComment(this)'>Delete</button></li>"
         $("#comments").append(createdComment);
@@ -145,12 +137,11 @@ function createNewComment(element){
 }
 
 
-function Comment(id, text, user, company){
+function Comment(id, text, company, user){
   this.id = id
   this.text = text
-  this.user = user
   this.company = company
-
+  this.user = user
 }
 
 Comment.prototype.formatComment = function(){

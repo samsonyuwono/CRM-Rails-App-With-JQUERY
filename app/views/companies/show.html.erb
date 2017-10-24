@@ -29,7 +29,7 @@
   <ul id="comments">
     <% @company.comments.each do |comment|%>
       <li id="comment-<%=comment.id%>">
-      <strong><%= comment.text%></strong>
+      <%= comment.text%>
       <button class="delete-comment" data="<%=comment.id%>">Delete</button>
       </li>
     <% end %>
