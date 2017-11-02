@@ -29,7 +29,6 @@ function hideInfo(element){
 
 function nextCompany(){
   var nextId = parseInt($(".js-next").attr("data-id"))
-  console.log(nextId)
   $.ajax({
     type: "get",
     url: `/companies/${nextId}/next`
@@ -57,7 +56,7 @@ Company.prototype.updateView = function(){
 
     var leadData= this.leads
     var commentData = this.comments
-    var leadList = formatLeadList(leadData) //helper function for formatting
+    var leadList = formatLeadList(leadData)
     var commentList = formatCommentList(commentData)
 
     $("h3").text(this.name)
@@ -145,5 +144,5 @@ function Comment(id, text, company, user){
 }
 
 Comment.prototype.formatComment = function(){
-    return "<li id='comment-"+ this.id +"'>"  this.text
+    return "<li id='comment-"+ this.id +"'><strong>" + this.text + "</strong>"
   }
