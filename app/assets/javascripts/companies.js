@@ -4,21 +4,27 @@ $(document).ready(function(){
 
 
 function moreInfo(element){
-  var id = element.dataset.id
-  $.get('/companies/' + id + '.json', function(data){
-    var leads= data["leads"]
-    var infoList = ""
-    for (var i = 0; i < leads.length; i++){
-      infoList += "<li>" + "<b>" + "Name:" + "</b>" + " " + leads[i]["name"] + " " + "|" +
-      "<b>" + " Phone Number:" + "</b>" + " " + leads[i]["phone_number"] + " " + "|" +
-      "<b>" + " Email:" + "</b>" + " " + leads[i]["email"] + " " + "|" +
-      "<b>" + " Contact?" + "</b>" + leads[i]["contact"] + "</li>"
-
-    }
+  const id = element.dataset.id
+  $.get('/companies/' + id + '/leads', function(leads){
+    let infoList = ""
+    leads
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach(lead => {
+        infoList += `
+          <li>
+            <b>Name: </b>${lead.name} |
+            <b>Phone Number: </b> ${lead.phone_number} |
+            <b>Email: </b> ${lead.email} |
+            <b>Contact? </b> ${lead.contact}
+          </li>
+        `
+      })
     $("#companyShow-" +id).html(infoList)
   })
   $("#more-" + id + "-company").replaceWith(`<button id="hide-${id}-company" class="js-hide" data-id="${id}" onClick= hideInfo(this)> Hide Info</button>`)
 }
+
+
 
 function hideInfo(element){
   var id = element.dataset.id
