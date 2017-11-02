@@ -52,6 +52,11 @@ before_action :current_company, only: %i[show edit update destroy]
     render json: company
   end
 
+  def previous
+    company = current_user.previous_company(params[:id])
+    render json: company
+  end
+
 
  private
 

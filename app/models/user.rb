@@ -82,5 +82,9 @@ end
     self.companies.where('id > ?', id).first
   end
 
+  def previous_company(id)
+    self.companies.where('id < ?', id)
+  end
+
 
 end

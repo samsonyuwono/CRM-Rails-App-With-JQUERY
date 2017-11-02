@@ -29,12 +29,12 @@ function hideInfo(element){
 
 function nextCompany(){
   var nextId = parseInt($(".js-next").attr("data-id"))
+  console.log(nextId)
   $.ajax({
     type: "get",
     url: `/companies/${nextId}/next`
   }).done(function(company) {
     var newCompany = new Company(company.id, company.name, company.revenue, company.customer, company.leads, company.comments)
-    console.log(company)
     newCompany.updateView()
   })
 }
@@ -57,7 +57,7 @@ Company.prototype.updateView = function(){
 
     var leadData= this.leads
     var commentData = this.comments
-    var leadList = formatLeadList(leadData)
+    var leadList = formatLeadList(leadData) //helper function for formatting
     var commentList = formatCommentList(commentData)
 
     $("h3").text(this.name)
@@ -66,7 +66,8 @@ Company.prototype.updateView = function(){
     $("h4").html(companyLeads)
     $("ul.company-info").html(leadList)
     $(".js-next").attr("data-id", this.id)
-    $(".add-lead").html(`<a href="/companies/${this.id}/leads/new">Add a lead/contact</a>`) //fix company id
+    $(".js-previous").attr("data-id", this.id)
+    $(".add-lead").html(`<a href="/companies/${this.id}/leads/new">Add a lead/contact</a>`)
     $(".edit-link").html(`<a href="/companies/${this.id}/edit">Edit Company</a>`)
     $(".delete-link").html(`<a href="/companies/${this.id}/destroy">Delete Company</a>`)
     $("#comments").html(commentList)
@@ -136,7 +137,6 @@ function createNewComment(element){
 
 }
 
-
 function Comment(id, text, company, user){
   this.id = id
   this.text = text
@@ -145,5 +145,5 @@ function Comment(id, text, company, user){
 }
 
 Comment.prototype.formatComment = function(){
-    return "<li id='comment-"+ this.id +"'><strong>" + this.text + "</strong>"
+    return "<li id='comment-"+ this.id +"'>"  this.text
   }

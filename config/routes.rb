@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'companies/:id/next', to: 'companies#next'
+  get 'companies/:id/previous', to: 'companies#previous'
+
 
 
   devise_for :users, controllers: {registrations: 'user/registrations',
