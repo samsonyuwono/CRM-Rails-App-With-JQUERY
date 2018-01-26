@@ -1,16 +1,20 @@
 class LeadsController < ApplicationController
     before_action :authenticate_user!
-    before_action :current_company, only: %i[new create]
+    before_action :current_company, only: %i[new create index]
     before_action :current_lead, only: %i[show edit update destroy]
 
+  def index
+    @leads = @company.leads
+    render json: @leads
+  end
+
   def new
-    @lead= @company.leads.build
+    @lead = @company.leads.build
   end
 
   def create
-    @lead = Lead.new(lead_params)
-    @lead.company_ids= params[:company_id]
-    if @lead.save
+    @lead = @company.leads.build(lead_params)
+    if @company.save
       redirect_to @company
     else
       render :new
