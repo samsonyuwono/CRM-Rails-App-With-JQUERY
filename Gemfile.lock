@@ -79,6 +79,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.3)
     database_cleaner (1.6.2)
     debug_inspector (0.0.3)
@@ -160,6 +161,8 @@ GEM
     public_suffix (3.0.1)
     puma (3.11.2)
     rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     rack_session_access (0.1.1)
@@ -217,6 +220,11 @@ GEM
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sidekiq (5.0.5)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.4, < 5)
     simplecov (0.15.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -291,6 +299,7 @@ DEPENDENCIES
   redis (~> 3.0)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sidekiq
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
