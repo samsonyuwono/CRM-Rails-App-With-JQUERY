@@ -1,0 +1,13 @@
+<h1>Customers</h1>
+<% if @customers != [] %>
+
+<ul>
+  <% @customers.each do |c| %>
+    <b><li><%= link_to c.name, company_path(c) %></li></b>
+    Customer Revenue(in thousands): $<%=c.revenue  %>
+  <% end %>
+<% else %>
+  <h3>You have don't have customers yet.
+    Better sell some software or you'll be fired soon.</h3>
+<%end %>
+</ul>

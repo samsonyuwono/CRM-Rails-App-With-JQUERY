@@ -1,0 +1,12 @@
+<h4><%= @lead.name %></h4>
+
+  <b>Phone number: </b><%=@lead.phone_number %>
+  <b>Email: </b><%=@lead.email %>
+  <b>Contact: </b><%= @lead.contact %>
+  <br/>
+
+
+<!-- <button type="button" name="button"><- Previous </button>
+<button class="js-next" name="js-next" onclick= nextLead()>Next  ></button> -->
+ <%= link_to 'Edit Lead', edit_company_lead_path(@lead) %><br>
+<%= link_to 'Delete Lead', company_lead_path(@lead), method: :delete %>
