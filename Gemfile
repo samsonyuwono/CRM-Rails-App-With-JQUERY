@@ -1,20 +1,17 @@
 source 'https://rubygems.org'
 
-# git_source(:github) do |repo_name|
-#   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-#   "https://github.com/#{repo_name}.git"
-# end
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
 
 gem 'jquery-rails'
-
 gem 'cancan'
-
+gem 'pg', group: :production # Added postgres and made it production only.
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# gem 'pg'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -46,6 +43,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -63,21 +61,21 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sidekiq'
 
 group :test, :development do
-  gem "better_errors"
-  gem "sprockets_better_errors"
-  gem "binding_of_caller"
-  gem "factory_girl_rails"
-  gem "simplecov"
-  gem "database_cleaner"
-  gem "pry"
-  gem "rack_session_access"
+  gem 'better_errors'
+  gem 'sprockets_better_errors'
+  gem 'binding_of_caller'
+  gem 'factory_bot_rails'
+  gem 'simplecov'
+  gem 'database_cleaner'
+  gem 'pry'
+  gem 'rack_session_access'
 end
 
-group :production do
-  gem "pg"
-  gem "google-analytics-rails"
-  gem "rails_12factor"
-end
+# group :production do
+#   gem "pg"
+#   gem "google-analytics-rails"
+#   gem "rails_12factor"
+# end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "omniauth-facebook"
