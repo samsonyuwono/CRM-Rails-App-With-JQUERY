@@ -2,6 +2,7 @@
 *.log
 tmp/
 .env
+.bundle/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
