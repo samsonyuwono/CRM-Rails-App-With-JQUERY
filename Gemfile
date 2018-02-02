@@ -7,7 +7,7 @@ end
 
 gem 'jquery-rails'
 gem 'cancan'
-gem 'pg', group: :production # Added postgres and made it production only.
+# gem 'pg', group: :production # Added postgres and made it production only.
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -65,11 +66,11 @@ group :test, :development do
   gem 'rack_session_access'
 end
 
-# group :production do
-#   gem "pg"
-#   gem "google-analytics-rails"
-#   gem "rails_12factor"
-# end
+group :production do
+  gem "pg"
+  gem "google-analytics-rails"
+  gem "rails_12factor"
+end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "omniauth-facebook"
