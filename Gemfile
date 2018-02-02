@@ -7,7 +7,7 @@ end
 
 gem 'jquery-rails'
 gem 'cancan'
- gem 'pg', '~> 0.21'
+gem 'pg', '~> 0.21'
 # gem 'sqlite3'
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
