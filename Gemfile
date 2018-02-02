@@ -7,7 +7,8 @@ end
 
 gem 'jquery-rails'
 gem 'cancan'
-# gem 'pg', group: :production # Added postgres and made it production only.
+ gem 'pg', '~> 0.21'
+# gem 'sqlite3'
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
@@ -38,7 +39,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'sqlite3'
+  # gem 'sqlite3'
 end
 
 group :development do
@@ -66,11 +67,11 @@ group :test, :development do
   gem 'rack_session_access'
 end
 
-group :production do
-  gem "pg"
-  gem "google-analytics-rails"
-  gem "rails_12factor"
-end
+# group :production do
+#   gem "pg"
+#   gem "google-analytics-rails"
+#   gem "rails_12factor"
+# end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "omniauth-facebook"
