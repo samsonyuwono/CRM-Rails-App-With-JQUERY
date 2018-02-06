@@ -28,6 +28,7 @@ group :development, :test do
 	gem 'capybara', '~> 2.13'
 	gem 'selenium-webdriver'
 	gem 'sqlite3'
+  gem 'sprockets_better_errors'
 end
 
 group :development do
