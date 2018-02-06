@@ -7,7 +7,7 @@ end
 
 gem 'jquery-rails'
 gem 'cancan'
-# gem 'pg', '~> 0.21'
+gem 'pg', group: :production
 # gem 'sqlite3'
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -43,35 +43,28 @@ group :development, :test do
 end
 
 group :development do
-  gem 'sqlite3'
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "dotenv-rails"
+	gem 'listen', '>= 3.0.5', '< 3.2'
+	gem 'spring'
+	gem 'spring-watcher-listen', '~> 2.0.0'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sidekiq'
 
-group :test, :development do
-  gem 'better_errors'
-  gem 'sprockets_better_errors'
-  gem 'binding_of_caller'
-  gem 'factory_bot_rails'
-  gem 'simplecov'
-  gem 'database_cleaner'
-  gem 'pry'
-  gem 'rack_session_access'
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+	gem 'capybara', '~> 2.13'
+	gem 'selenium-webdriver'
+	gem 'sqlite3'
 end
 
-group :production do
-  gem "pg"
-  gem "google-analytics-rails"
-  gem "rails_12factor"
-end
+# group :production do
+#   gem "pg"
+#   gem "google-analytics-rails"
+#   gem "rails_12factor"
+# end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "omniauth-facebook"
+gem 'pry'
