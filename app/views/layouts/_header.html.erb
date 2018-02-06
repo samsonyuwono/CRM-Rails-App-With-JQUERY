@@ -1,4 +1,4 @@
-<nav class="">
+<!-- <nav class="navbar">
     <b><%= link_to "Home", home_path %> </b>|
       <% if user_signed_in? %>
       <b>Signed in as <%=current_user.email%></b> |
@@ -7,4 +7,30 @@
       <b> <%= link_to "Dashboard", dashboard_path %> </b> |
       <b> <%= link_to "Sign out", destroy_user_session_path, :method => "delete"%></b>
       <% end %>
-</nav>
+</nav> -->
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+            <%= link_to "Home", home_path %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="sidebar-brand">
+              <%= link_to "My accounts", companies_path %>
+            </li>
+            <li>
+              <%= link_to "Customers", customers_path  %>
+            </li>
+            <li>
+                <%= link_to "Dashboard", dashboard_path %> </b>
+            </li>
+            <li>
+              <%= link_to "Sign out", destroy_user_session_path, :method => "delete"%></b>
+            </li>
+        </ul>
+
+        <!-- Bootstrap core JavaScript -->
+        <% end %>
+    </div>
