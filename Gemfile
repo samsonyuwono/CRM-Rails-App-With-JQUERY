@@ -5,13 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.3.3'
-
 gem 'jquery-rails'
 gem 'cancan'
-gem 'pg', '~> 0.21', group: :production
-gem "rails_12factor"
-
+# gem 'pg', '~> 0.21'
+# gem 'sqlite3'
 gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
@@ -46,6 +43,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -59,7 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sidekiq'
 
 group :test, :development do
-  gem 'sqlite3'
   gem 'better_errors'
   gem 'sprockets_better_errors'
   gem 'binding_of_caller'
@@ -70,6 +67,11 @@ group :test, :development do
   gem 'rack_session_access'
 end
 
+group :production do
+  gem "pg"
+  gem "google-analytics-rails"
+  gem "rails_12factor"
+end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "omniauth-facebook"
