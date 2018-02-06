@@ -73,5 +73,5 @@ end
 #   gem "rails_12factor"
 # end
 
-gem "bootstrap-sass", "~> 3.1.1"
+gem "bootstrap-sass"
 gem "omniauth-facebook"
