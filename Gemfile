@@ -9,7 +9,7 @@ ruby '2.3.3'
 
 gem 'rails', '~> 5.1.3'
 #Add SQLite to  development mode only
-gem 'pg', group: :production # Added postgres and made it production only.
+gem 'pg', '~> 0.21'
 gem 'rails_12factor'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -46,5 +46,5 @@ gem 'paperclip'
 gem 'active_model_serializers'
 
 
-gem "bootstrap-sass", "~> 3.1.1"
+gem "bootstrap-sass"
 gem "omniauth-facebook"
