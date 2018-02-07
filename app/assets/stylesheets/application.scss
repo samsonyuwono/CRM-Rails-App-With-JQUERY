@@ -1,2 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  background: image-url('crm_icon_modul.png');
+  background-repeat: no-repeat;
+  background-color: #cccccc;
+  background-position: right;
+  background-attachment: fixed;
+  background-size: 600px 600px;
+}

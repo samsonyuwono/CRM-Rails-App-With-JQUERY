@@ -8,15 +8,14 @@
 
     <title>CRMRailsApp</title>
 
-    <%= csrf_meta_tags %>
     <!-- Bootstrap core CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- Custom styles for this template -->
    <link href="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <%= csrf_meta_tags %>
 
   </head>
 
@@ -30,8 +29,11 @@
               </li>
               <% if user_signed_in? %>
                 <li class="sidebar-brand">
-                  <%= link_to "My accounts", companies_path %>
+                  <%= current_user.username %>
                 </li>
+                <li>
+                <%= link_to "My accounts", companies_path %>
+               </li>
                 <li>
                   <%= link_to "Customers", customers_path  %>
                 </li>
@@ -48,9 +50,9 @@
           <!-- Page Content -->
           <div id="page-content-wrapper">
               <div class="container-fluid">
-                  <h1>Simple Sidebar</h1>
+                  <h1>My CRM Portal</h1>
                   <%= yield %>
-                  <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+                </br><a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
               </div>
           </div>
           <!-- /#page-content-wrapper -->
@@ -69,7 +71,7 @@
           $("#wrapper").toggleClass("toggled");
       });
       </script>
-    <!-- <%= yield %> -->
+
     <% end %>
   </body>
 </html>
