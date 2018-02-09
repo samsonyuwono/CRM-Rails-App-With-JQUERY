@@ -1,20 +1,32 @@
 <% if @companies != [] %>
 <h2>Your accounts and in-progress accounts</h2>
-<ul class="company-list">
-<!-- get -->
-  <% @companies.each do |company| %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Company</th>
+    </tr>
+  </thead>
+  <tbody>
+    <th scope="row"></th>
+      <tr>
+        <td>
+          <% @companies.each do |company| %>
 
-    <li id="companyId-<%=company.id%>">
-      <b><%= link_to company.name, company_path(company)%></b>
+            <id="companyId-<%=company.id%>">
+            <%= link_to company.name, company_path(company)%>
 
-      <button id="more-<%=company.id%>-company" class="js-more" data-id="<%= company.id %>" onclick="moreInfo(this)">Show Leads/Contacts</button> </br>
+          <button id="more-<%=company.id%>-company"
+            class="js-more" data-id="<%= company.id %>"
+            onclick="moreInfo(this)">Show Leads/Contacts</button>
 
-      <ul id="companyShow-<%=company.id%>">
-      </ul>
-    </li>
+          <ul id="companyShow-<%=company.id%>">
+          </ul>
 
-  <%end%>
-</ul>
+          <%end%>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   <% else %>
   <h3>You have not added any companies yet.</h3>
 <%end %>

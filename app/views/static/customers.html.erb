@@ -1,7 +1,7 @@
 <h1>Customers</h1>
 <% if @customers != [] %>
 
-<ul>
+<ul class="customer-list">
   <% @customers.each do |c| %>
     <b><li><%= link_to c.name, company_path(c) %></li></b>
     Customer Revenue(in thousands): $<%=c.revenue  %>
