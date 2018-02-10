@@ -6,13 +6,20 @@
 <button class="js-next" data-id="<%= @company.id %>">Next Account ---></button>
 
 <h4><%= @company.name%>'s Leads/Contacts</h4>
-<div id="leads_group" class="list-group">
+<div id="myList" role="tablist" class="list-group">
   <ul class="list-group list-group-flush">
     <% @company.leads.each do |lead| %>
-    <li class="list-group-item"> <%= link_to lead.name, company_lead_path(current_user, lead) %> -
+    <li class="list-group-item" data-toggle="list"> <%= link_to lead.name, company_lead_path(current_user, lead) %> -
       Contact?: <%= lead.contact  %></li>
   <% end %>
   </ul>
+</div>
+
+<div class="list-group" id="myList" role="tablist">
+  <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
+  <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile" role="tab">Profile</a>
+  <a class="list-group-item list-group-item-action" data-toggle="list" href="#messages" role="tab">Messages</a>
+  <a class="list-group-item list-group-item-action" data-toggle="list" href="#settings" role="tab">Settings</a>
 </div>
 
 <div class="add-lead">

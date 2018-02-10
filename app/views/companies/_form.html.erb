@@ -1,32 +1,33 @@
-  <%= render 'layouts/form_messages', object: @company %>
-  <b>Please fill out all fields for company and lead</b>
-  <%= form_for @company do |f| %>
-  <%= f.hidden_field :user_id %>
+<%= render 'layouts/form_messages', object: @company %>
+<b>Please fill out all fields for company and lead</b>
 
-    <%= f.label :name %>:
-    <%= f.text_field :name %><br />
+<%= form_for @company do |f| %>
+ <%= f.hidden_field :user_id %>
 
-    <%= f.label :revenue, "Revenue(in thousands):" %>
-    <%= f.number_field :revenue %><br />
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
 
-    Check this box for customer:<%= f.check_box :customer %><br><br />
-    <% if params[:action] =="new" || params[:action] == "create" %>
-    <b>Create lead for Company</b> <br />
+  <%= f.label :revenue, "Revenue(in thousands):" %>
+  <%= f.number_field :revenue %><br />
 
-    <%= f.fields_for :leads, @company.leads.build do |i| %>
+  Check this box for customer:<%= f.check_box :customer %><br><br />
+  <% if params[:action] =="new" || params[:action] == "create" %>
+  <b>Create lead for Company</b> <br />
 
-      <%= i.label :name %>:
-      <%= i.text_field :name %> <br />
+  <%= f.fields_for :leads, @company.leads.build do |i| %>
 
-      <%= i.label :email %>:
-      <%= i.text_field :email %> <br />
+    <%= i.label :name %>:
+    <%= i.text_field :name %> <br />
 
-      <%= i.label :phone_number %>:
-      <%= i.text_field :phone_number %> <br />
+    <%= i.label :email %>:
+    <%= i.text_field :email %> <br />
 
-        Check this box for contact:<%= i.check_box :contact %><br />
+    <%= i.label :phone_number %>:
+    <%= i.text_field :phone_number %> <br />
 
-        <% end %>
-      <%end%>
-    <%= f.submit %>
-  <% end %>
+      Check this box for contact:<%= i.check_box :contact %><br />
+
+      <% end %>
+    <%end%>
+  <%= f.submit %>
+<% end %>
