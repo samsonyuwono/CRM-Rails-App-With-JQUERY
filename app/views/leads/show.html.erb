@@ -1,9 +1,11 @@
-<h4><%= @lead.name %></h4>
-
-  <b>Phone number: </b><%=@lead.phone_number %>
-  <b>Email: </b><%=@lead.email %>
-  <b>Contact: </b><%= @lead.contact %>
-  <br/>
+<div id="lead_show">
+  <ul class="list-group">
+    <li class="list-group-item"><b>Name: </b> <%= @lead.name %></li>
+    <li class="list-group-item"><b>Phone number: </b> <%=@lead.phone_number %></li>
+    <li class="list-group-item"><b>Email: </b> <%=@lead.email %></li>
+    <li class="list-group-item"><b>Contact: </b> <%= @lead.contact %><b></li>
+    </ul>
+</div>
 
 
 <!-- <button type="button" name="button"><- Previous </button>
