@@ -1,7 +1,6 @@
 <% if @companies != [] %>
 <h2>Your accounts and in-progress accounts</h2>
 <table class="table table-hover">
-
   <tbody>
       <% @companies.each do |company| %>
       <tr>
@@ -11,16 +10,11 @@
           <button id="more-<%=company.id%>-company"
             class="js-more" data-id="<%= company.id %>"
             onclick="moreInfo(this)">Show Leads/Contacts</button>
-
          <ul id="companyShow-<%=company.id%>">
          </ul>
-
        </tr>
       <%end%>
-
-      </tbody>
-    </table>
-
+    </tbody>
 </table>
   <% else %>
   <h3>You have not added any companies yet.</h3>
