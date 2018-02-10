@@ -16,8 +16,19 @@ body {
  padding-top: 20px;
 }
 
-#page-content-wrapper .container-fluid .table table-striped .dashboard {
- font-size: 10px;
- padding-top: 20px;
+#page-content-wrapper .container-fluid #leads_group ul {
+ font-size: 15px;
+ font-weight: bold;
  list-style-type: none;
+}
+
+#page-content-wrapper .container-fluid h3 {
+ font-size: 40px;
+ font-weight: bold;
+ list-style-type: none;
+ background-color: white;
+}
+
+#page-content-wrapper .container-fluid p {
+ font-size: 25px;
 }

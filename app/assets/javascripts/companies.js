@@ -27,19 +27,19 @@ function moreInfo(element){
 
 
 function hideInfo(element){
-  var id = element.dataset.id
+  let id = element.dataset.id
   $("#companyShow-"+id).html("")
   $(`#hide-${id}-company`).replaceWith(`<button id="more-${id}-company"
   class="js-more" data-id="${id}" onclick="moreInfo(this)">Show Leads/Contacts</button>`)
 }
 
 function nextCompany(){
-  var nextId = parseInt($(".js-next").attr("data-id"))
+  let nextId = parseInt($(".js-next").attr("data-id"))
   $.ajax({
     type: "get",
     url: `/companies/${nextId}/next`
   }).done(function(company) {
-    var newCompany = new Company(company.id, company.name, company.revenue, company.customer, company.leads, company.comments)
+    let newCompany = new Company(company.id, company.name, company.revenue, company.customer, company.leads, company.comments)
     newCompany.updateView()
   })
 }
@@ -56,20 +56,19 @@ function Company(id, name, revenue, customer, leads, comments) {
 
 Company.prototype.updateView = function(){
 
-    var revenueNumber = `<b> Revenue (in thousands): </b> ${this.revenue}`
-    var customerStatus = `<b> Customer: </b> ${this.customer}`
-    var companyLeads =  `<b> ${this.name}'s Leads/Contacts </b>`
-
-    var leadData= this.leads
-    var commentData = this.comments
-    var leadList = formatLeadList(leadData)
-    var commentList = formatCommentList(commentData)
+    let revenueNumber = `<b> Revenue (in thousands): </b> ${this.revenue}`
+    let customerStatus = `<b> Customer: </b> ${this.customer}`
+    let companyLeads =  `<b> ${this.name}'s Leads/Contacts </b>`
+    let leadData= this.leads
+    let commentData = this.comments
+    let leadList = formatLeadList(leadData)
+    let commentList = formatCommentList(commentData)
 
     $("h3").text(this.name)
     $("p.revenue").html(revenueNumber)
     $("p.customer").html(customerStatus)
     $("h4").html(companyLeads)
-    $("ul.company-info").html(leadList)
+    $("#leads_group ul").html(leadList)
     $(".js-next").attr("data-id", this.id)
     $(".js-previous").attr("data-id", this.id)
     $(".add-lead").html(`<a href="/companies/${this.id}/leads/new">Add a lead/contact</a>`)
@@ -80,23 +79,22 @@ Company.prototype.updateView = function(){
 }
 
 function formatLeadList(leads){
-    var companyLeadInfo = ""
-      for (var i = 0; i < leads.length; i++){
-          companyLeadInfo += "<li>" + `<a href=showId/leads/` + leads[i].id + `>` + leads[i].name + `</a>` + " " + "|" +
-          "<b>" + " Contact?:" + "</b>" + " " + leads[i].contact +  "</li>"
+    let companyLeadInfo = ""
+      for (let i = 0; i < leads.length; i++){
+          companyLeadInfo += "<li>" + `<a href=showId/leads/` + leads[i].id + `>`
+          + leads[i].name + `</a>` + "-" + " Contact?:" + " " + leads[i].contact +  "</li>"
         }
         return companyLeadInfo
 }
 
 function formatCommentList(comments){
-  var commentInfo = ""
-  for (var i = 0; i < comments.length; i++) {
+  let commentInfo = ""
+  for (let i = 0; i < comments.length; i++) {
     let com = new Comment(comments[i]["id"],comments[i]["text"],comments[i]["company"]["user_id"],comments[i]["company"]["name"])
     commentInfo += com.formatComment() + " <button class='delete-comment' data='" + com.id + "' onclick='deleteComment(this)'>Delete</button></li>"
   }
   return commentInfo
 }
-
 
 function attachListeners(){
       $(".js-next").click(nextCompany)
@@ -113,9 +111,8 @@ function attachListeners(){
     })
 }
 
-
 function deleteComment(element){
-  var commentId = element.attributes["data"].value
+  let commentId = element.attributes["data"].value
   $.ajax({
     url: '/comments/' +commentId,
     type: 'DELETE',
@@ -126,14 +123,14 @@ function deleteComment(element){
 }
 
 function createNewComment(element){
-  var values= $(element).serialize()
-  var posting = $.post('/comments', values)
+  let values= $(element).serialize()
+  let posting = $.post('/comments', values)
 
   posting.done(function(comment) {
 
-        var newComment = new Comment(comment.id, comment.text, comment.user_id, comment.company)
+        let newComment = new Comment(comment.id, comment.text, comment.user_id, comment.company)
 
-        var createdComment = newComment.formatComment() + " <button class='delete-comment' data='" + comment.id + "' onclick='deleteComment(this)'>Delete</button></li>"
+        let createdComment = newComment.formatComment() + " <button class='delete-comment' data='" + comment.id + "' onclick='deleteComment(this)'>Delete</button></li>"
         $("#comments").append(createdComment);
 
         $("#submit").prop( "disabled", false )

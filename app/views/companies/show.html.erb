@@ -6,13 +6,14 @@
 <button class="js-next" data-id="<%= @company.id %>">Next Account ---></button>
 
 <h4><%= @company.name%>'s Leads/Contacts</h4>
-<ul class= "company-info", style-"list-style-type: none;">
+<div id="leads_group" class="list-group">
+  <ul class="list-group list-group-flush">
     <% @company.leads.each do |lead| %>
-  <li style-"list-style-type: none;"><b> <%= link_to lead.name, company_lead_path(current_user, lead) %> </b>|
-    <b>Contact?:</b> <%= lead.contact  %></li>
-  <%end %>
-
-</ul>
+    <li class="list-group-item"> <%= link_to lead.name, company_lead_path(current_user, lead) %> -
+      Contact?: <%= lead.contact  %></li>
+  <% end %>
+  </ul>
+</div>
 
 <div class="add-lead">
 <%= link_to "Add a lead/contact", new_company_lead_path(@company) %> </br>
