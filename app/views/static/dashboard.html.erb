@@ -1,16 +1,31 @@
-<h1>Dashboard</h1>
+<h1>Sales Dashboard</h1>
 
-<h3>Total Revenue(in thousands)</h3>
-$<%= @total_revenue %>
+<table class="table table-striped">
 
-<h3>Total Pipeline including closed deals(in thousands)</h3>
-$<%= @total_pipeline %>
-
-<h3>Total Contacts:</h3>
-<%= @total_contacts %> contacts
-
-<h3>Total Leads:</h3>
-<%= @total_leads %> leads
-
-<h3>Total Accounts:</h3>
-<%= @total_accounts %> accounts
+  <tbody>
+    <tr>
+      <th scope="row">Total Revenue(in thousands)</th>
+      <td>$<%= @total_revenue %></td>
+    </tr>
+    <tr>
+      <th scope="row">Total Revenue(in thousands)</th>
+      <td>$<%= @total_pipeline %></td>
+    </tr>
+    <tr>
+      <th scope="row">Total Pipeline including closed deals(in thousands)</th>
+      <td>$<%= @total_pipeline %></td>
+    </tr>
+    <tr>
+      <th scope="row">Total Contacts:</th>
+      <td><%= @total_contacts %> contacts</td>
+    </tr>
+    <tr>
+      <th scope="row">Total Leads:</th>
+      <td><%= @total_leads %> leads</td>
+    </tr>
+    <tr>
+      <th scope="row">Total Accounts:</th>
+      <td><%= @total_accounts %> accounts</td>
+    </tr>
+  </tbody>
+</table>
