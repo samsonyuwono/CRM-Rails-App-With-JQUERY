@@ -1,0 +1,44 @@
+
+  <div id="wrapper">
+      <!-- Sidebar -->
+      <% if user_signed_in? %>
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand">
+                <%= current_user.username %>
+              </li>
+              <li>
+              <%= link_to "My accounts", companies_path %>
+             </li>
+              <li>
+                <%= link_to "Customers", customers_path  %>
+              </li>
+              <li>
+                  <%= link_to "Dashboard", dashboard_path %> </b>
+              </li>
+              <li>
+                <%= link_to "Sign out", destroy_user_session_path, :method => "delete"%></b>
+              </li>
+
+          </ul>
+        </div>
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+
+      </br><a href="#menu-toggle" class="btn btn-secondary"
+      id="menu-toggle">Toggle Menu</a>
+    </div>
+  </div>
+
+        <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/jquery/jquery.min.js"></script>
+        <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        </script>
+  

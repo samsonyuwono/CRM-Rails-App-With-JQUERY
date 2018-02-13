@@ -24,19 +24,16 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-              <li class="sidebar-brand">
-                <%= link_to "Home", home_path %>
-              </li>
-              <% if !user_signed_in? %>
-              <%= link_to "Sign up", new_user_registration_path %> <br></br>
-              <%= link_to "Sign in", new_user_session_path %> <br></br>
-               <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-               <% end %>
-               <% else %>
+              <% !!if user_signed_in? %>
                 <li class="sidebar-brand">
-                
+                  <%= current_user.username %>
                 </li>
+                <% end %>
                 <li>
+                  <li>
+                    <%= link_to "Home", home_path %>
+                  </li>
+                  <li>
                 <%= link_to "My accounts", companies_path %>
                </li>
                 <li>
@@ -57,8 +54,11 @@
               <div class="container-fluid">
                   <h1>My CRM Portal</h1>
                   <%= yield %>
+                  <% !!if user_signed_in? %>
+
                 </br><a href="#menu-toggle" class="btn btn-secondary"
                 id="menu-toggle">Toggle Menu</a>
+                <% end %>
               </div>
           </div>
           <!-- /#page-content-wrapper -->
