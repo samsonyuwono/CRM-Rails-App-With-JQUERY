@@ -2,18 +2,18 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable,
-          :omniauthable, :omniauth_providers => [:facebook]
+  :recoverable, :rememberable, :trackable, :validatable,
+  :omniauthable, :omniauth_providers => [:facebook]
 
-    has_many :companies
-    has_many :company_leads
-    has_many :leads, through: :company_leads
-    has_many :comments
+  has_many :companies
+  has_many :company_leads
+  has_many :leads, through: :company_leads
+  has_many :comments
 
 
-    validates :username, presence: true
-    validates :email, presence: true
-    validates :password, length: {mininum: 6}, allow_blank: false
+  validates :username, presence: true
+  validates :email, presence: true
+  validates :password, length: {mininum: 6}, allow_blank: false
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -41,8 +41,8 @@ class User < ApplicationRecord
     companies.each do |company|
       total+= company.revenue
     end
-  total
-end
+    total
+  end
 
 
   def total_contacts
@@ -51,9 +51,9 @@ end
       company.leads.each do |lead|
         if lead.contact == true
           counter << lead.contact
-          end
         end
       end
+    end
     counter.count
   end
 
@@ -62,7 +62,7 @@ end
     companies.each do |company|
       company.leads.each do |lead|
         if lead.id > 0
-        counter << lead.id
+          counter << lead.id
         end
       end
     end

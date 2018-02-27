@@ -1,25 +1,24 @@
+<div id="wrapper">
+  <% if user_signed_in? %>
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <%= current_user.username %>
+      </li>
+      <li>
+        <%= link_to "My accounts", companies_path %>
+      </li>
+      <li>
+        <%= link_to "Customers", customers_path  %>
+      </li>
+      <li>
+        <%= link_to "Dashboard", dashboard_path %> </b>
+      </li>
+      <li>
+        <%= link_to "Sign out", destroy_user_session_path, :method => "delete"%></b>
+      </li>
+    </ul>
+  </div>
+</div>
 
-  <div id="wrapper">
-      <% if user_signed_in? %>
-      <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-              <li class="sidebar-brand">
-                <%= current_user.username %>
-              </li>
-              <li>
-              <%= link_to "My accounts", companies_path %>
-             </li>
-              <li>
-                <%= link_to "Customers", customers_path  %>
-              </li>
-              <li>
-                <%= link_to "Dashboard", dashboard_path %> </b>
-              </li>
-              <li>
-                <%= link_to "Sign out", destroy_user_session_path, :method => "delete"%></b>
-              </li>
-          </ul>
-        </div>
-    </div>
-
-  <% end %>
+<% end %>

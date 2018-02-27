@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   get 'companies/:id/next', to: 'companies#next'
   get 'companies/:id/previous', to: 'companies#previous'
 
-
-
   devise_for :users, controllers: {registrations: 'user/registrations',
     sessions: 'user/sessions',
     omniauth_callbacks: 'user/omniauth_callbacks'}
@@ -15,8 +13,6 @@ Rails.application.routes.draw do
   resources :leads
 
   resources :comments
-
-
 
   root 'static#home', as: 'home'
   get 'customers', to: 'static#customers'

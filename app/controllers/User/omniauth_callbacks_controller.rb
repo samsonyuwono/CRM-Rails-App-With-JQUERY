@@ -17,8 +17,6 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to home_path
       end
 
-
-
   # You should also create an action method in this controller like this:
   # def twitter
   # end
