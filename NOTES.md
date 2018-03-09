@@ -10,4 +10,7 @@ To- do
 3. add a table for leads and companies
 4. fix formatting for every page
 5. repair fb ominauth
-6. add github omniauth
+
+
+
+add bootstrap classes to table for next button
