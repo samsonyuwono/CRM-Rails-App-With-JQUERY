@@ -81,7 +81,7 @@ Company.prototype.updateView = function(){
 function formatLeadList(leads){
     let companyLeadInfo = ""
       for (let i = 0; i < leads.length; i++){
-          companyLeadInfo += "<li>" + `<a href=showId/leads/` + leads[i].id + `>`
+          companyLeadInfo += "<li class='list-group-item'>" + `<a href=showId/leads/` + leads[i].id + `>`
           + leads[i].name + `</a>` + "-" + " Contact?:" + " " + leads[i].contact +  "</li>"
         }
         return companyLeadInfo
